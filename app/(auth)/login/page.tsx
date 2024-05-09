@@ -35,8 +35,8 @@ const SignInPage = () => {
                             Efetuar Login
                         </Button>
                         <div className="flex items-center justify-between">
-                            <Link href={""} className="text-[11px] text-[#F98E1B]">Recuperar a senha</Link>
-                            <Link href={""} className="text-[11px] text-[#F98E1B]">Efetuar cadastro</Link>
+                            <Link href={"/recuperar-senha"} className="text-[11px] text-[#F98E1B]">Recuperar a senha</Link>
+                            <Link href={"/cliente/registro"} className="text-[11px] text-[#F98E1B]">Efetuar cadastro</Link>
                         </div>
                     </form>
                 </div>
