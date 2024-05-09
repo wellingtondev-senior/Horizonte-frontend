@@ -10,7 +10,7 @@ const SignInPage = () => {
 
         <section className="w-full min-h-screen fixed overflow-y-auto">
             <div className="w-full h-[50vh] bg-gradient-to-r from-[#FACE08] to-[#F98E1B] flex justify-center">
-                <div className="absolute top-[18vh] w-[400px] max-lg:w-[300px] h-auto bg-white rounded-lg shadow-lg">
+                <div className="absolute top-[15vh] w-[400px] max-lg:w-[300px] h-auto bg-white rounded-lg shadow-lg">
                     <Logo className={"w-[300px]"} imageName={""} />
                     <form className="px-10 py-10 flex flex-col gap-10">
                         <div className="flex flex-col gap-4">

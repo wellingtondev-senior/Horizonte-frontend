@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from 'jose'
-import { ENV } from "./config/env";
+import { ENV } from "./src/config/env";
 
 
 export async function middleware(req: NextRequest, res: NextResponse) {
