@@ -18,21 +18,18 @@ export default function Home() {
         return <SignInPage />
     }
   }
-
+  const loop =  setTimeout(() => { setIsModal(false) }, 2000)
 
   useEffect(() => {
-    setTimeout(() => { setIsModal(false) }, 2000)
-  }, [])
-
-
-
+    if(isModal){
+      clearTimeout(loop)
+    }
+  }, [isModal])
 
   return (
     <section>  
-     
       <ComponentHome /> 
       <Modal stateActive={isModal} />
-    
     </section>
   )
 }

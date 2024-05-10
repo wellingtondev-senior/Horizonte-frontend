@@ -1,9 +1,14 @@
-const HomeCliente = () => {
+import Dashboard from "./components/layout/Dashboard";
+
+const DashPage = () => {
     return (
-        <div>
-            dash
-        </div>
+        <Dashboard>
+            <article>
+                
+            </article>
+        </Dashboard>
+
     );
 }
 
-export default HomeCliente;
+export default DashPage;

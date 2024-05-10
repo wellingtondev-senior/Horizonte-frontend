@@ -8,11 +8,11 @@ interface MenuRootProps extends VariantProps<typeof menu> {
 }
 
 const menu = tv({
-    base: "flex flex-col fixed z-[99] w-[60px] h-full overflow-y-scroll top-0 items-center  justify-start pb-4  pt-2 gap-6 bg-[#08000E] transition-1 ease-in-out duration-900",
+    base: "flex flex-col fixed z-[99]  h-full overflow-y-scroll top-0 bottom-0 items-center  justify-start pb-4  pt-2 gap-6 bg-white duration-500",
     variants: {
         open: {
-            true: "left-0 ",
-            false: "left-[-60px] ",
+            true: "left-0 w-[300px]",
+            false: "max-lg:left-[-60px] left-[-240px] w-[60px]",
         },
     },
     

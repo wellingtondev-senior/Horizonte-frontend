@@ -15,7 +15,7 @@ interface ModalProps extends VariantProps<typeof ModalPropsVariant>{
 }
 
 const ModalPropsVariant = tv({
-  base: "fixed w-full h-screen  bg-gradient-to-r from-[#FACE08] to-[#F98E1B] flex  items-center justify-center",
+  base: "fixed z-[99999] w-full h-screen  bg-gradient-to-r from-[#FACE08] to-[#F98E1B] flex  items-center justify-center",
   variants: {
     stateActive: {
           true: "top-0 transition-1 ease-in-out duration-500",

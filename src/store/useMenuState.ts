@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
 
-export interface useSubMenutateProps {
+export interface useMenutateProps {
     visible: boolean,
     setVisible: () =>void,
 }
-const useSubMenutate = create<useSubMenutateProps>((set) => ({
-    visible: false,
+const useMenutate = create<useMenutateProps>((set) => ({
+    visible: true,
     items:"",
     setVisible: () => set((state:{visible:boolean}) => ({visible: !state.visible})
     ),
@@ -15,4 +15,4 @@ const useSubMenutate = create<useSubMenutateProps>((set) => ({
 })
 );
 
-export default useSubMenutate;
+export default useMenutate;

@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { CookiesDB } from "@/lib/cookies";
 import api from "@/services/api";
-import { AuthRequestType, AuthResponse } from "@/types/auth";
+import { CredenciasRequestType  } from "@/types/credencias";
 import { useMutation,  useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { CiLock } from "react-icons/ci";
 import { toast } from "sonner"
 
-async function authenticacao({ email, password }: AuthRequestType) {
-  const { data } = await api.post<AuthResponse>("/auth", {
+async function authenticacao({ email, password }: CredenciasRequestType ) {
+  const { data } = await api.post("auth", {
     email,
     password,
   });
@@ -20,7 +20,7 @@ export const useAuthenticacao = () => {
   const router = useRouter();
   return useMutation({
     mutationFn: authenticacao,
-    onSuccess: async (data:AuthResponse) => {
+    onSuccess: async (data:any) => {
       CookiesDB.set("auth-jwt-secret", data.message.access_token);
       queryClient.invalidateQueries({ queryKey: ['authenticacao'] })
       toast(

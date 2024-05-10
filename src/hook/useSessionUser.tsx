@@ -12,12 +12,13 @@ interface useSessionClienteProps {
 
 
 
-const useSession = () => {
+const useSession = ()=> {
   
-    const token = CookiesDB.get("jwt-secret");
-    const decodeToken = VereficSession.isTokenVerefic(token);
-    const Cliente = decodeToken;
-    return Cliente;
+    // const token = CookiesDB.get("jwt-secret");
+    // const decodeToken = VereficSession.isTokenVerefic(token);
+    // const Cliente = decodeToken;
+    // return Cliente;
+    return true
 };
 
 

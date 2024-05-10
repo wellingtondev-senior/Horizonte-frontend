@@ -1,11 +1,12 @@
-import DashProvider from "@/util/dashProvider";
-import Stats from "./components/Stats";
+import Dashboard from "./components/layout/Dashboard";
 
 const DashPage = () => {
     return (
-        <DashProvider>
-           <Stats/>
-        </DashProvider>
+        <Dashboard>
+            <article>
+                
+            </article>
+        </Dashboard>
 
     );
 }

@@ -1,4 +1,4 @@
-const NewFlow = () => {
+const RecuperarSenhaPage = () => {
     return (
         <div>
             Enter
@@ -6,4 +6,4 @@ const NewFlow = () => {
     );
 }
 
-export default NewFlow;
+export default RecuperarSenhaPage;
