@@ -10,6 +10,14 @@ export default function Home() {
   const [isModal, setIsModal] = useState(true);
 
 
+  const ComponentHome = () => {
+    switch (!!session) {
+      case true:
+        return <HomeCliente />
+      case false:
+        return <SignInPage />
+    }
+  }
 
   useEffect(() => {
     const loop = setTimeout(() => {
@@ -21,7 +29,7 @@ export default function Home() {
 
   return (
     <section>  
-     {session ? <HomeCliente /> : <SignInPage />}
+      <ComponentHome /> 
       <Modal stateActive={isModal} />
     </section>
   )

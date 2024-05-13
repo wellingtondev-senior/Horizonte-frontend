@@ -77,7 +77,8 @@
   }
   /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 4px; /* Largura da barra de rolagem */
+  width: 4px; 
+  height: 4px;/* Largura da barra de rolagem */
 }
 
 ::-webkit-scrollbar-track {

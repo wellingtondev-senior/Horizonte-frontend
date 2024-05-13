@@ -6,7 +6,7 @@ export interface useMenutateProps {
     setVisible: () =>void,
 }
 const useMenutate = create<useMenutateProps>((set) => ({
-    visible: true,
+    visible: false,
     items:"",
     setVisible: () => set((state:{visible:boolean}) => ({visible: !state.visible})
     ),

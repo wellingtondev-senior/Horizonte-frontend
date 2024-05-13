@@ -20,7 +20,7 @@ const ModalPropsVariant = tv({
     stateActive: {
           true: "top-0 transition-1 ease-in-out duration-500",
           false: "top-[-100vh] transition-1 ease-in-out duration-500",
-          null:""
+          null:"top-[-100vh] transition-1 ease-in-out duration-500",
       },
   },
   
