@@ -11,11 +11,11 @@ interface HeaderProps extends VariantProps<typeof HeaderChildren> {
 }
 
 const HeaderChildren = tv({
-    base: "fixed z-[9] w-auto h-auto  flex items-center justify-between pl-[80px] pr-4 py-2 ",
+    base: "fixed z-[9] w-full h-auto  flex items-center justify-between pl-[80px] pr-4 py-2 ",
     variants: {
         open: {
-            true: "left-[300px] right-0 duration-550 ",
-            false: "left-0 right-0 duration-[5500ms]",
+            true: "left-[300px]  duration-550 ",
+            false: "left-0  duration-550",
         },
     },
 
