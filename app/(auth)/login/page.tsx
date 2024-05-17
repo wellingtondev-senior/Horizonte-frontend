@@ -9,6 +9,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { CredenciasRequestType } from "@/types/credencias";
 import { CookiesDB } from "@/lib/cookies";
 import { useRouter } from "next/navigation";
+import { useAuthenticacao } from "@/query/useAuthenticacao";
+import Spinner from "@/components/Spinner";
 
 
 
@@ -18,13 +20,12 @@ const SignInPage = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<CredenciasRequestType>()
+    const authenticacao  = useAuthenticacao();
 
     const router = useRouter();
     const onSubmit: SubmitHandler<CredenciasRequestType> = (data) => {
         const {email, password} = data
-        CookiesDB.set("jwt-secret", data);
-        router.replace("/cliente")
-
+        authenticacao.mutate({email, password})
     }
 
 
@@ -67,7 +68,9 @@ const SignInPage = () => {
                             </div>
                         </div>
                         <Button type="submit" className="w-full bg-[#F98E1B]">
-                            Efetuar Login
+                            {
+                                authenticacao.isPending ? <Spinner/> : <span>Efetuar Login</span>
+                            }
                         </Button>
                         <div className="flex items-center justify-between">
                             <Link href={"/recuperar-senha"} className="text-[11px] text-[#F98E1B]">Recuperar a senha</Link>

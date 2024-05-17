@@ -21,7 +21,7 @@ export const useAuthenticacao = () => {
   return useMutation({
     mutationFn: authenticacao,
     onSuccess: async (data:any) => {
-      CookiesDB.set("auth-jwt-secret", data.message.access_token);
+      CookiesDB.set("jwt-secret", data.message.access_token);
       queryClient.invalidateQueries({ queryKey: ['authenticacao'] })
       toast(
         <div className="w-full h-full bg-[#20003B] p-4 rounded-lg shadow-lg flex flex-col text-white">
@@ -41,7 +41,8 @@ export const useAuthenticacao = () => {
           </div>
         </div>
       )
-      router.replace("/dash")
+      router.replace("/cliente")
+
     },
     onError: async (err) => {
       console.log("Error")

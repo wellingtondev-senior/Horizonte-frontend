@@ -3,14 +3,16 @@ import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { FaUser } from "react-icons/fa";
-import { FaKey } from "react-icons/fa";
 import { Checkbox } from "@/components/ui/checkbox"
 
 
 
 
 const RegistroCliente = () => {
+
+
+
+    
     return (
         <section className="w-full h-screen  overflow-y-auto">
             <div className="w-full h-[50vh] bg-gradient-to-r from-[#FACE08] to-[#F98E1B] flex justify-center">

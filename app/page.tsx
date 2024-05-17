@@ -1,17 +1,17 @@
 "use client"
-import { useSession } from "@/hook/useSessionUser";
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Modal from "./Modal";
 import SignInPage from "./(auth)/login/page";
 import HomeCliente from "./cliente/page";
+import { AuthContext } from "@/context/auth.context";
 
 export default function Home() {
-  const session = useSession();
+  const {isLogger} = useContext(AuthContext);
   const [isModal, setIsModal] = useState(true);
 
 
   const ComponentHome = () => {
-    switch (!!session) {
+    switch (isLogger) {
       case true:
         return <HomeCliente />
       case false:

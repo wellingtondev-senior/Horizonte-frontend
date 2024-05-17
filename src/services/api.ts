@@ -9,7 +9,7 @@ const api: AxiosInstance = axios.create({
 
 api.interceptors.request.use(
     async (config: InternalAxiosRequestConfig) => {
-        const token = Cookies.get("auth-jwt-secret")?.valueOf();
+        const token = Cookies.get("jwt-secret")?.valueOf();
         if(token){
            config.headers.Authorization = `Bearer ${token?.replace(/"/g, '')}`;
         }

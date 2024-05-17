@@ -6,11 +6,14 @@ import { ENV } from "./src/config/env";
 
 export async function middleware(req: NextRequest, res: NextResponse) {
 
-  const tokenMaster = cookies().get("auth-jwt-secret");
+  const tokenMaster = cookies().get("jwt-secret");
 
-  if(req.nextUrl.pathname.startsWith('/dash/auth')){
+  if(req.nextUrl.pathname.startsWith('/auth')){
     return NextResponse.next();
-  }else{
+  }else if(req.nextUrl.pathname.startsWith('/cliente/registro')){
+    return NextResponse.next();
+  }
+  else{
     if (tokenMaster?.value) {
       try {
         
@@ -30,7 +33,9 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 }
 export const config = {
   matcher: [
-    "/dash/:path*",
+    "/cliente/:path*",
+    "/colaborador/:path*",
+    "/diretor/:path*"
   ]
 }
 
