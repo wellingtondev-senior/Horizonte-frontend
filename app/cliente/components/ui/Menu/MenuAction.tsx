@@ -14,7 +14,7 @@ interface MenuActionProps extends VariantProps<typeof menuAction> {
 }
 
 const menuAction = tv({
-    base: "fixed top-0 z-[9999] cursor-pointer  w-[50px] h-[50px] rounded-r-lg  flex items-center justify-center bg-white ",
+    base: "fixed top-0 z-[9999] cursor-pointer  w-[50px] h-[50px] rounded-r-lg  flex items-center justify-center bg-white mt-[10px]",
     variants: {
         open: {
             true: "left-[300px]  duration-550",

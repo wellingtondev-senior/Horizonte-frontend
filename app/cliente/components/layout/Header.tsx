@@ -11,7 +11,7 @@ interface HeaderProps extends VariantProps<typeof HeaderChildren> {
 }
 
 const HeaderChildren = tv({
-    base: "fixed z-[9] w-auto h-auto  flex items-center justify-between pl-[80px] pr-10 py-2 ",
+    base: "fixed z-[9] w-auto h-auto  flex items-center justify-between pl-[80px] pr-4 py-2 ",
     variants: {
         open: {
             true: "left-[300px] right-0 duration-550 ",
@@ -28,7 +28,7 @@ const HeaderChildren = tv({
 const Header = ({ open }: HeaderProps) => {
     return (
         <header className={cn(HeaderChildren({ open }))}>
-            <article>d</article>
+            <article></article>
             <article>
                 <HoverCardAvatar/>
             </article>
