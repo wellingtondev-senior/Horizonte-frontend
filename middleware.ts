@@ -12,6 +12,8 @@ export async function middleware(req: NextRequest, res: NextResponse) {
     return NextResponse.next();
   }else if(req.nextUrl.pathname.startsWith('/cliente/registro')){
     return NextResponse.next();
+  }else if(req.nextUrl.pathname.startsWith('/cliente/activate')){
+    return NextResponse.next();
   }
   else{
     if (tokenMaster?.value) {
