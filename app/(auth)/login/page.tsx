@@ -11,7 +11,7 @@ import { CookiesDB } from "@/lib/cookies";
 import { useRouter } from "next/navigation";
 import { useAuthenticacao } from "@/query/useAuthenticacao";
 import Spinner from "@/components/Spinner";
-
+import { Toaster } from "@/components/ui/sonner"
 
 
 const SignInPage = () => {
@@ -80,6 +80,7 @@ const SignInPage = () => {
                 </div>
 
             </div>
+            <Toaster />
         </section>
 
     );

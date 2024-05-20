@@ -6,7 +6,7 @@ import { tv, VariantProps } from "tailwind-variants";
 import { cn } from "@/lib/utils";
 import Header from "./Header";
 import { AuthProvider } from "@/context/auth.context";
-
+import { Toaster } from "@/components/ui/sonner"
 
 interface DashboardProps extends VariantProps<typeof DashboardChildren> {
     className?: string;
@@ -37,6 +37,7 @@ const Dashboard = ({ children }: DashboardProps) => {
             <section className={cn(DashboardChildren({ open: visible }))}>
                 {children}
             </section>
+            <Toaster />
         </main>
 
     );

@@ -17,8 +17,8 @@ const menuAction = tv({
     base: "fixed top-0 z-[9999] cursor-pointer  w-[50px] h-[50px] rounded-r-lg  flex items-center justify-center bg-white mt-[10px]",
     variants: {
         open: {
-            true: "left-[300px]  duration-550",
-            false: "left-0 duration-550"
+            true: "left-[300px]  duration-500",
+            false: "left-0 duration-300"
         },
     },
     defaultVariants:{
