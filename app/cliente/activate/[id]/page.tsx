@@ -25,6 +25,7 @@ const ActivatePage = ({ params }: { params: { id: string } }) => {
     const enviarCodigo = (codigo: string) => {
         if (codigo.length >= 6) {
             console.log("codigo enviado")
+            codigoSet.mutate({ userId: isUserId, codigo:parseInt(codigo) })
         }
     }
 
@@ -49,7 +50,9 @@ const ActivatePage = ({ params }: { params: { id: string } }) => {
                         <div className="flex flex-col justify-center items-center gap-4">
                             <div className="flex flex-col items-center">
                                 <span className="font-bold text-[18px] text-gray-700">Confirmação de Email</span>
-                                <span className=" text-[14px] text-gray-500">Enviamos um email para <strong> (wrm.....)</strong> com código de verificação de titularidade </span>
+                                <span className=" text-[14px] text-gray-500 text-center">
+                                    Enviaremos um e-mail para <strong>(wrm.....)</strong> com o código de verificação de titularidade.
+                                </span>
                             </div>
                             <Button onClick={reenviar} type="button" className="bg-orange-600 flex items-center gap-2">
                                 <BsSend />
@@ -72,11 +75,7 @@ const ActivatePage = ({ params }: { params: { id: string } }) => {
 
                             </div>
                         </div>
-                        <div className="flex gap-2">
-                            <span className="text-[13px]">Confirmação:</span>
-                            <span className="text-[13px] font-bold text-orange-600">Pendente</span>
-                            <span className="text-[13px] font-bold text-green-600">Sucesso</span>
-                        </div>
+                       
                     </div>
                 </div>
 
