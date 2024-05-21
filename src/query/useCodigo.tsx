@@ -50,7 +50,7 @@ export const useCodigoSet = () => {
         </div>
       )
 
-
+      router.replace("/cliente")
     },
     onError: async (err) => {
       console.log("Error")
