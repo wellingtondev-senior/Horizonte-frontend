@@ -7,6 +7,8 @@ const CookiesDB = {
    set:(nameCookie:string, data:{} | [])=>{
       const parseData = JSON.stringify(data)
       Cookies.set(nameCookie, parseData, { expires: 1/12 });
+     
+
       
    },
    get:(nameCookie:string)=>{

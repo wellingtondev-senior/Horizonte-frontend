@@ -12,9 +12,14 @@ import {
     InputOTPSlot,
 } from "@/components/ui/input-otp"
 import { useEffect, useState } from "react";
+import { decodeBase64 } from "@/lib/codificarMD5";
+import { useCodigoSet, usesendEmailCodigo } from "@/query/useCodigo";
 
-const ActivatePage = () => {
+const ActivatePage = ({ params }: { params: { id: string } }) => {
     const [isCodigo, setIscodigo] = useState<string>("")
+    const [isUserId, setIsUserId] = useState(0)
+    const sendEmailCodigo = usesendEmailCodigo();
+    const codigoSet = useCodigoSet()
 
 
     const enviarCodigo = (codigo: string) => {
@@ -23,11 +28,14 @@ const ActivatePage = () => {
         }
     }
 
-    const reenviar = ()=>{
-        
+    const reenviar = () => {
+        sendEmailCodigo.mutate({ userId: isUserId })
     }
 
     useEffect(() => {
+        var codigoDecodificado = decodeURIComponent(params.id);
+        const codigo = decodeBase64(codigoDecodificado)
+        setIsUserId(parseInt(codigo))
         enviarCodigo(isCodigo)
     }, [isCodigo])
 
@@ -43,29 +51,32 @@ const ActivatePage = () => {
                                 <span className="font-bold text-[18px] text-gray-700">Confirmação de Email</span>
                                 <span className=" text-[14px] text-gray-500">Enviamos um email para <strong> (wrm.....)</strong> com código de verificação de titularidade </span>
                             </div>
-                            <div className=" flex items-center justify-between gap-2">
+                            <Button onClick={reenviar} type="button" className="bg-orange-600 flex items-center gap-2">
+                                <BsSend />
+                                <span>Enviar Código</span>
+                            </Button>
+                            <div className=" flex items-center justify-between gap-2 bg-gray-800 p-2 rounded-lg">
                                 <InputOTP maxLength={6} onChange={(e) => setIscodigo(e)}>
                                     <InputOTPGroup>
-                                        <InputOTPSlot index={0} />
-                                        <InputOTPSlot index={1} />
-                                        <InputOTPSlot index={2} />
+                                        <InputOTPSlot index={0} className="bg-white" />
+                                        <InputOTPSlot index={1} className="bg-white" />
+                                        <InputOTPSlot index={2} className="bg-white" />
                                     </InputOTPGroup>
                                     <InputOTPSeparator />
                                     <InputOTPGroup>
-                                        <InputOTPSlot index={3} />
-                                        <InputOTPSlot index={4} />
-                                        <InputOTPSlot index={5} />
+                                        <InputOTPSlot index={3} className="bg-white" />
+                                        <InputOTPSlot index={4} className="bg-white" />
+                                        <InputOTPSlot index={5} className="bg-white" />
                                     </InputOTPGroup>
                                 </InputOTP>
-                                <Button type="button">
-                                    <BsSend />
-                                </Button>
+
                             </div>
                         </div>
-                        <Button type="submit" className="w-full bg-[#F98E1B]">
-                            <span>Confirme Email</span>
-                        </Button>
-
+                        <div className="flex gap-2">
+                            <span className="text-[13px]">Confirmação:</span>
+                            <span className="text-[13px] font-bold text-orange-600">Pendente</span>
+                            <span className="text-[13px] font-bold text-green-600">Sucesso</span>
+                        </div>
                     </div>
                 </div>
 

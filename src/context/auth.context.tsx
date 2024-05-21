@@ -35,7 +35,8 @@ function AuthProvider({ children }: any) {
 
     function vereficSession(){
        if(validarToken()){
-          
+        const token = Cookies.get("jwt-secret")?.valueOf();
+        console.log(token)
        }else{
         
        }

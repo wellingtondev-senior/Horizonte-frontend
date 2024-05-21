@@ -4,24 +4,51 @@ import api from "@/services/api";
 import { CredenciasRequestType, CredenciasResponseType } from "@/types/credencias";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { CiLock } from "react-icons/ci";
 import { toast } from "sonner"
+import { MdOutlineMarkEmailRead } from "react-icons/md";
+import { RiSignalWifiErrorFill } from "react-icons/ri";
+type CodigoSetType = {
+  userId: number,
+  codigo?: number
+}
 
-async function codigo({ email, password }: CredenciasRequestType) {
-  const { data } = await api.post("auth", {
-    email,
-    password,
+async function codigoSet({ userId, codigo }: CodigoSetType) {
+  const { data } = await api.post("/cliente/active", {
+    userId,
+    codigo,
   });
   return data
 }
 
-export const useCodigo = () => {
+async function sendEmailCodigo({ userId }: CodigoSetType) {
+  const { data } = await api.post("/cliente/sendEmail", {
+    userId,
+  });
+  return data
+}
+
+
+export const useCodigoSet = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
   return useMutation({
-    mutationFn: codigo,
+    mutationFn: codigoSet,
     onSuccess: async (data: CredenciasResponseType) => {
-      
+      toast(
+        <div className="w-full h-full bg-tranparente rounded-lg flex flex-col text-white">
+          <div className="flex items-center justify-start gap-2">
+            <MdOutlineMarkEmailRead className="fill-green-600" />
+            <span className="text-gray-700 font-semibold text-[14px]">
+              Codigo Vereficado
+            </span>
+          </div>
+
+          <span className="text-gray-500 font-normal text-[12px]">
+            Sucesso, aguarde o redirecionamento
+          </span>
+
+        </div>
+      )
 
 
     },
@@ -30,23 +57,63 @@ export const useCodigo = () => {
       return toast(
         <div className="w-full h-full bg-transparent p-4 rounded-lg  flex flex-col text-gray-700">
           <div className="flex items-center justify-start gap-2">
-            <CiLock />
+            <RiSignalWifiErrorFill className="fill-red-600" />
             <span className="text-gray-700 font-semibold text-[14px]">
-              Error de Authenticação
+              Còdigo Error
             </span>
           </div>
 
           <span className="text-gray-700 font-normal text-[12px]">
-            As credenciais estão incorretas.  {/* {`${err}`} */}
+            Código incorreto
           </span>
-          <div className=" flex items-center justify-end mt-4 gap-2">
-            <Button className="bg-sky-600 w-auto h-[30px] text-[11px] font-normal px-2">Recuperar a Senha</Button>
 
-            <Button className="bg-[#4CD137] w-auto h-[30px] text-[11px] font-normal px-2">Pagina Inicial</Button>
-          </div>
         </div>
       )
     }
   });
 }
 
+export const usesendEmailCodigo = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  return useMutation({
+    mutationFn: sendEmailCodigo,
+    onSuccess: async (data: CredenciasResponseType) => {
+
+      toast(
+        <div className="w-full h-full bg-tranparente rounded-lg flex flex-col text-white">
+          <div className="flex items-center justify-start gap-2">
+            <MdOutlineMarkEmailRead className="fill-green-600" />
+            <span className="text-gray-700 font-semibold text-[14px]">
+              Email Enviado
+            </span>
+          </div>
+
+          <span className="text-gray-500 font-normal text-[12px]">
+            Verefique seu email
+          </span>
+
+        </div>
+      )
+
+    },
+    onError: async (err) => {
+      console.log("Error")
+      return toast(
+        <div className="w-full h-full bg-transparent p-4 rounded-lg  flex flex-col text-gray-700">
+          <div className="flex items-center justify-start gap-2">
+            <RiSignalWifiErrorFill className="fill-red-600" />
+            <span className="text-gray-700 font-semibold text-[14px]">
+              Error ao enviar Email
+            </span>
+          </div>
+
+          <span className="text-gray-700 font-normal text-[12px]">
+            Tente novamente mais tarde.  {/* {`${err}`} */}
+          </span>
+
+        </div>
+      )
+    }
+  });
+}
