@@ -75,6 +75,51 @@ export const useAuthenticacao = () => {
               </div>
             </div>
           )
+          router.replace(`/colaborador`)
+          case "DIRETOR":
+          CookiesDB.set("jwt-secret", data.message.access_token);
+          queryClient.invalidateQueries({ queryKey: ['authenticacao'] })
+          toast(
+            <div className="w-full h-full bg-[#20003B] p-4 rounded-lg shadow-lg flex flex-col text-gray-600">
+              <div className="flex items-center justify-start gap-2">
+                <CiLock />
+                <span className="text-white font-semibold text-[14px]">
+                  Autenticado com sucesso
+                </span>
+              </div>
+
+              <span className="text-white font-normal text-[12px]">
+                aguarde o redirecionamento
+              </span>
+              <div className=" flex items-center justify-end mt-4 gap-2">
+
+                <Button className="bg-[#4CD137] w-auto h-[30px] text-[11px] font-normal px-2">Pagina Inicial</Button>
+              </div>
+            </div>
+          )
+          router.replace(`/diretoria`)
+          case "MASTER":
+          CookiesDB.set("jwt-secret", data.message.access_token);
+          queryClient.invalidateQueries({ queryKey: ['authenticacao'] })
+          toast(
+            <div className="w-full h-full bg-transparent p-4 rounded-lg shadow-lg flex flex-col text-gray-600">
+              <div className="flex items-center justify-start gap-2">
+                <CiLock />
+                <span className="text-white font-semibold text-[14px]">
+                  Autenticado com sucesso
+                </span>
+              </div>
+
+              <span className="text-white font-normal text-[12px]">
+                aguarde o redirecionamento
+              </span>
+              <div className=" flex items-center justify-end mt-4 gap-2">
+
+                <Button className="bg-[#4CD137] w-auto h-[30px] text-[11px] font-normal px-2">Pagina Inicial</Button>
+              </div>
+            </div>
+          )
+          router.replace(`/diretoria`)
       }
 
 

@@ -1,77 +1,60 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { SignJWT, jwtVerify } from 'jose'
+import { jwtVerify } from 'jose';
 import { ENV } from "./src/config/env";
+import { VereficSession } from "@/lib/vereficSession";
+import { CredenciasRetorno } from "@/types/credencias";
+import { Role } from "@/enums/role.enum";
 
+type AccessMap = { [key in Role]: string[] };
 
-export async function middleware(req: NextRequest, res: NextResponse) {
+const gestorAcesso = (role: Role, path: string): boolean => {
+  const pathArray = path.split("/");
 
+  const accessMap: AccessMap = {
+    DIRETOR: ['/diretoria', '/colaborador', '/cliente'],
+    MASTER: [`/diretoria`, `/cliente`, `/colaborador`],
+    COLABORADOR: [`/colaborador`, `/cliente`],
+    CLIENTE: [`/cliente`],
+  };
+
+  return accessMap[role]?.includes(`/${pathArray[1]}`) ?? false;
+};
+
+export async function middleware(req: NextRequest) {
   const tokenMaster = cookies().get("jwt-secret");
 
-  if(req.nextUrl.pathname.startsWith('/auth')){
-    return NextResponse.next();
-  }else if(req.nextUrl.pathname.startsWith('/cliente/registro')){
-    return NextResponse.next();
-  }else if(req.nextUrl.pathname.startsWith('/cliente/activate')){
+  const publicPaths = [
+    '/auth',
+    '/cliente/registro',
+    '/cliente/activate'
+  ];
+
+  if (publicPaths.some(path => req.nextUrl.pathname.startsWith(path))) {
     return NextResponse.next();
   }
-  else{
-    if (tokenMaster?.value) {
-      try {
-        
+
+  if (tokenMaster?.value) {
+    try {
+      const user: CredenciasRetorno = await VereficSession.isTokenVerefic(tokenMaster.value);
+
+      if (gestorAcesso(user.role, req.nextUrl.pathname)) {
         return NextResponse.next();
-  
-      } catch (error) {
-        return NextResponse.redirect(new URL('/login', req.url))
-  
+      } else {
+        return NextResponse.redirect(new URL('/login', req.url));
       }
-    } else {
-      return NextResponse.redirect(new URL('/login', req.url))
+    } catch (error) {
+      return NextResponse.redirect(new URL('/login', req.url));
     }
+  } else {
+    return NextResponse.redirect(new URL('/login', req.url));
   }
-
-  
-
 }
+
 export const config = {
   matcher: [
     "/cliente/:path*",
     "/colaborador/:path*",
-    "/diretor/:path*"
+    "/diretoria/:path*"
   ]
-}
-
-// async function validacaoHeader(req: NextRequest, res: NextResponse) {
-//   if (!req.headers.get('authorization') || !req.headers.get('authorization')?.startsWith('Bearer ')) {
-//     return NextResponse.json({
-//       statusCode: 401,
-//       message: 'authorization header null'
-//     }, { status: 401 })
-//   } else {
-//     try {
-//       const authorization = req.headers.get('authorization');
-//       const tokenHeader = authorization?.replace("Bearer ", "").trim();
-//       const verified = await jwtVerify(
-//         tokenHeader!,
-//         new TextEncoder().encode(ENV.JWTKEY)
-//       )
-//       if (verified) {
-//         // return NextResponse.json({
-//         //     statusCode: 201,
-//         //     message:verified
-//         // })
-//         return NextResponse.next();
-//       }
-//       return NextResponse.json({
-//         statusCode: 401,
-//         message: "Sem Autorização"
-//       })
-//     } catch (error: any) {
-//       return NextResponse.json({
-//         statusCode: 401,
-//         message: error.message
-//       }, { status: 401 })
-//     }
-//   }
-
-// }
+};

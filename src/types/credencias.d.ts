@@ -1,18 +1,20 @@
+import { Role } from "@/enums/role.enum";
+
 export type CredenciasRequestType = {
   email:string,
   password:string
 }
 
-interface CredenciasResponseType {
+export interface CredenciasResponseType {
   statusCode: number;
-  message: Message;
+  message: CredenciasRetorno;
 }
 
-interface Message {
+export interface CredenciasRetorno {
   email: string;
   create_at: string;
   update_at: string;
-  role: string;
+  role: Role;
   active:boolean;
   access_token: string;
   user: User[];
