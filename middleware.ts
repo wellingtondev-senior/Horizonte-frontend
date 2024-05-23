@@ -13,7 +13,7 @@ const gestorAcesso = (role: Role, path: string): boolean => {
 
   const accessMap: AccessMap = {
     DIRETOR: ['/diretoria', '/colaborador', '/cliente'],
-    MASTER: [`/diretoria`, `/cliente`, `/colaborador`],
+    MASTER: [`/diretoria`],
     COLABORADOR: [`/colaborador`, `/cliente`],
     CLIENTE: [`/cliente`],
   };

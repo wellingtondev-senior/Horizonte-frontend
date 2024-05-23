@@ -1,4 +1,7 @@
 import { Role } from "@/enums/role.enum";
+import { ClienteRequestType } from "./cliente";
+import { Colaborador } from "./colaborador";
+import { DiretorType } from "./diretor";
 
 export type CredenciasRequestType = {
   email:string,
@@ -17,5 +20,5 @@ export interface CredenciasRetorno {
   role: Role;
   active:boolean;
   access_token: string;
-  user: User[];
+  user: ColaboradorType[] | ClienteRequestType[] | DiretorType[];
 }
