@@ -29,8 +29,8 @@ export const columns: ColumnDef<ColaboradorType>[] = [
       enableHiding: false,
     },
     {
-      accessorKey: "status",
-      header: "Status",
+      accessorKey: "cargo",
+      header: "Nome",
       cell: ({ row }) => (
         <div className="capitalize">{row.getValue("status")}</div>
       ),

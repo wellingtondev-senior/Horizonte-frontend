@@ -1,6 +1,6 @@
 import { Menu } from "./ui/Menu";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { FaListUl } from "react-icons/fa6";
+import { FaListUl, FaUsersGear } from "react-icons/fa6";
 import { TiHome } from "react-icons/ti";
 
 interface NavBarProps {
@@ -16,7 +16,7 @@ const Navbar = ({ open }: NavBarProps) => {
                 <Menu.Action icon={HiOutlineMenuAlt3} />
             </Menu.Header>
             <Menu.Item icon={TiHome} href="/diretoria/inicio" title="Pagina Inicial"/>
-            <Menu.Item icon={FaListUl} href="/diretoria/colaborador" title="Colaboradores"/>
+            <Menu.Item icon={FaUsersGear} href="/diretoria/colaboradores" title="Colaboradores"/>
             <Menu.Item icon={FaListUl} href="/diretoria/clientes" title="Clientes"/>
             
         </Menu.Root>
