@@ -38,8 +38,9 @@ import {
 import { columns } from "./tables"
 import { CredenciasRetorno } from "@/types/credencias"
 import { ColaboradorType } from "@/types/colaborador"
+import { useState } from "react";
 
-const data: ColaboradorType[] = []
+const isData: ColaboradorType[] = []
 
 
 export function ListaColaboradores() {
@@ -50,6 +51,7 @@ export function ListaColaboradores() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
+  const [data, setData]= useState<ColaboradorType[]>(isData)
 
   const table = useReactTable({
     data,
