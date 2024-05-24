@@ -1,9 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
-import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
-import { useForm } from "react-hook-form";
 import { BsSend } from "react-icons/bs";
 import {
     InputOTP,
