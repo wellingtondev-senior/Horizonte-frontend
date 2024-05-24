@@ -15,7 +15,7 @@ const Navbar = ({ open }: NavBarProps) => {
             <Menu.Header open={open} className="w-full h-auto flex items-center justify-center">
                 <Menu.Action icon={HiOutlineMenuAlt3} />
             </Menu.Header>
-            <Menu.Item icon={TiHome} href="/diretoria/inicio" title="Pagina Inicial"/>
+            <Menu.Item icon={TiHome} href="/diretoria" title="Pagina Inicial"/>
             <Menu.Item icon={FaUsersGear} href="/diretoria/colaboradores" title="Colaboradores"/>
             <Menu.Item icon={FaListUl} href="/diretoria/clientes" title="Clientes"/>
             

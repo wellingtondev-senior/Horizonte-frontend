@@ -74,7 +74,6 @@ export function ListaColaboradores() {
   })
   useEffect(() => {
     if (colaboradorFindAll.isSuccess) {
-      console.log(colaboradorFindAll.data?.message)
       setData(colaboradorFindAll.data?.message)
     }
 

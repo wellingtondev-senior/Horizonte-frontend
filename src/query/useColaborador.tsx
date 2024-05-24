@@ -52,7 +52,6 @@ export const useColaboradorCreate= () => {
       router.replace("/cliente")
     },
     onError: async (err) => {
-      console.log("Error")
       return toast(
         <div className="w-full h-full bg-transparent p-4 rounded-lg  flex flex-col text-gray-700">
           <div className="flex items-center justify-start gap-2">

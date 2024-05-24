@@ -1,12 +1,5 @@
-import { Button } from "@/components/ui/button";
 import Dashboard from "./components/layout/Dashboard";
-import { VscGraph } from "react-icons/vsc";
-import { GiSettingsKnobs } from "react-icons/gi";
-import { IoTimeOutline } from "react-icons/io5";
-import { MdOutlineHelpOutline } from "react-icons/md";
-import { FaUsers } from "react-icons/fa";
-import { GrDocumentText } from "react-icons/gr";
-import { ListaColaboradores } from "./components/tables/colaboradores";
+import Stats from "./components/Stats";
 
 
 const DashPage = () => {
@@ -16,7 +9,9 @@ const DashPage = () => {
                 <div className="w-full flex items-center justify-center py-10">
                     <span className="text-[25px] text-white font-bold">Dashboard Diretor</span>
                 </div>
-               
+               <div className="w-full">
+                <Stats/>
+               </div>
             </article>
         </Dashboard>
 
