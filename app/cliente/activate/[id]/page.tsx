@@ -13,12 +13,12 @@ import {
 } from "@/components/ui/input-otp"
 import { useEffect, useState } from "react";
 import { decodeBase64 } from "@/lib/codificarMD5";
-import { useCodigoSet, usesendEmailCodigo } from "@/query/useCodigo";
+import { useCodigoSet, useSendEmailCodigo } from "@/query/useCodigo";
 
 const ActivatePage = ({ params }: { params: { id: string } }) => {
     const [isCodigo, setIscodigo] = useState<string>("")
     const [isUserId, setIsUserId] = useState(0)
-    const sendEmailCodigo = usesendEmailCodigo();
+    const sendEmailCodigo = useSendEmailCodigo();
     const codigoSet = useCodigoSet()
 
 
