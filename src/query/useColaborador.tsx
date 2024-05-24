@@ -27,7 +27,7 @@ async function colaboradorFindAll() {
 }
 
 
-export const useCodigoSet = () => {
+export const useColaboradorCreate= () => {
   const queryClient = useQueryClient();
   const router = useRouter();
   return useMutation({
@@ -73,12 +73,13 @@ export const useCodigoSet = () => {
 }
 
 
-export const useColaboradorFindAll = (code_hash:string) => {
+export const useColaboradorFindAll = () => {
     return useQuery({
-      queryKey: ['colaboradorFindAll', code_hash],
+      queryKey: ['colaboradorFindAll'],
       queryFn: colaboradorFindAll,
       staleTime: 1000*60*5,
       refetchInterval: 1000*60*5,
+      
       
     });
   };

@@ -38,7 +38,8 @@ import {
 import { columns } from "./tables"
 import { CredenciasRetorno } from "@/types/credencias"
 import { ColaboradorType } from "@/types/colaborador"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useColaboradorFindAll } from "@/query/useColaborador";
 
 const isData: ColaboradorType[] = []
 
@@ -51,8 +52,8 @@ export function ListaColaboradores() {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
-  const [data, setData]= useState<ColaboradorType[]>(isData)
-
+  const [data, setData] = useState<ColaboradorType[]>(isData)
+  const colaboradorFindAll = useColaboradorFindAll()
   const table = useReactTable({
     data,
     columns,
@@ -71,7 +72,13 @@ export function ListaColaboradores() {
       rowSelection,
     },
   })
+  useEffect(() => {
+    if (colaboradorFindAll.isSuccess) {
+      console.log(colaboradorFindAll.data?.message)
+      setData(colaboradorFindAll.data?.message)
+    }
 
+  }, [colaboradorFindAll.isSuccess])
   return (
     <div className="w-full">
       <div className="flex items-center py-4 gap-2">
