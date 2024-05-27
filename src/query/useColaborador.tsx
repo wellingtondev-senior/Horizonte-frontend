@@ -7,16 +7,16 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner"
 import { MdOutlineMarkEmailRead } from "react-icons/md";
 import { RiSignalWifiErrorFill } from "react-icons/ri";
-import { ColaboradorResponse } from "@/types/colaborador";
-type CodigoSetType = {
-  userId: number,
-  codigo?: number
-}
+import { ColaboradorRequest, ColaboradorResponse } from "@/types/colaborador";
 
-async function codigoSet({ userId, codigo }: CodigoSetType) {
+
+async function colaboradorCreate({ nome, cargo, email, telefone, diretorId }: ColaboradorRequest) {
   const { data } = await api.post("/colaborador/create", {
-    userId,
-    codigo,
+    nome,
+    cargo,
+    email,
+    telefone,
+    diretorId
   });
   return data
 }
@@ -29,10 +29,11 @@ async function colaboradorFindAll() {
 
 export const useColaboradorCreate= () => {
   const queryClient = useQueryClient();
-  const router = useRouter();
   return useMutation({
-    mutationFn: codigoSet,
+    mutationFn: colaboradorCreate,
     onSuccess: async (data: CredenciasResponseType) => {
+      console.log("Cadastrado sucesso")
+      queryClient.invalidateQueries({ queryKey: ['colaboradorFindAll'] })
       toast(
         <div className="w-full h-full bg-tranparente rounded-lg flex flex-col text-white">
           <div className="flex items-center justify-start gap-2">
@@ -49,7 +50,6 @@ export const useColaboradorCreate= () => {
         </div>
       )
 
-      router.replace("/cliente")
     },
     onError: async (err) => {
       return toast(
@@ -76,8 +76,6 @@ export const useColaboradorFindAll = () => {
     return useQuery({
       queryKey: ['colaboradorFindAll'],
       queryFn: colaboradorFindAll,
-      staleTime: 1000*60*5,
-      refetchInterval: 1000*60*5,
       
       
     });

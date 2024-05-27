@@ -7,9 +7,10 @@ import { VereficSession } from '@/lib/vereficSession';
 import { CredenciasRetorno } from '@/types/credencias';
 
 export interface AuthType {
-    user: object;
+    isUser: CredenciasRetorno | null;
     isLogger: boolean;
     isError: object;
+    isLogout:()=>void
 }
 
 
@@ -21,6 +22,7 @@ function AuthProvider({ children }: any) {
 
     const [isLogger, setIsLogger] = useState(false)
     const [isError, setIsError] = useState({ error: false, message: '' })
+    const [isUser,  setIsUser] = useState<CredenciasRetorno | null >(null);
     const router = useRouter()
 
     function validarToken(): boolean {
@@ -39,10 +41,15 @@ function AuthProvider({ children }: any) {
         setIsLogger(true);
         const token = Cookies.get("jwt-secret")?.valueOf();
         const user: CredenciasRetorno =  VereficSession.isTokenVerefic(token);
-        console.log(user)
+        setIsUser(user)
        }else{
         
        }
+    }
+
+    function isLogout(){
+        const token = Cookies.remove("jwt-secret");
+        router.replace("/login")
     }
 
 
@@ -55,9 +62,10 @@ function AuthProvider({ children }: any) {
 
     return (<>
         <AuthContext.Provider value={{
-            user: {},
+            isUser,
             isLogger,
-            isError
+            isError,
+            isLogout
         }}>
             {children}
         </AuthContext.Provider>

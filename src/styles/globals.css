@@ -77,7 +77,7 @@
   }
   /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 4px; 
+  width: 7px; 
   height: 4px;/* Largura da barra de rolagem */
 }
 
@@ -86,7 +86,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #F98E1B; /* Cor do controle deslizante da barra de rolagem */
+  background-color: #c45004; /* Cor do controle deslizante da barra de rolagem */
   border-radius: 9999px; /* Arredondamento das bordas */
   border: 1px solid transparent; /* Borda ao redor do controle deslizante */
 }

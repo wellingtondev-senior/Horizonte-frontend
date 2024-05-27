@@ -1,4 +1,11 @@
-export interface ColaboradorType {
+export interface ColaboradorRequest {
+    nome: string;
+    telefone: string;
+    email: string;
+    cargo: string;
+    diretorId: number;
+  }
+  export interface ColaboradorType {
     id: number;
     nome: string;
     telefone: string;
@@ -9,7 +16,6 @@ export interface ColaboradorType {
     diretorId: number;
     userId: number;
   }
-  
  
   export interface ColaboradorResponse {
     statusCode: number;

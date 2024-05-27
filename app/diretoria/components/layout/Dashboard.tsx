@@ -12,7 +12,7 @@ interface DashboardProps extends VariantProps<typeof DashboardChildren> {
 }
 
 const DashboardChildren = tv({
-    base: "relative max-w-[99vw] right-0 w-full h-full  duration-500  block",
+    base: "relative max-w-[99vw] right-0 w-full h-full  duration-500  block pb-[100px]",
     variants: {
         open: {
             true: "left-[300px] right-0",
@@ -28,7 +28,7 @@ const DashboardChildren = tv({
 const Dashboard = ({ children}: DashboardProps) => {
     const {visible} = useMenuState((state:useMenutateProps)=>state);
     return (
-        <main className="w-full  max-h-screen h-screen bg-gradient-to-r from-[#FACE08] to-[#F98E1B] flex justify-center overflow-x-hidden ">
+        <main className="w-full   h-screen bg-gradient-to-r from-[#FACE08] to-[#F98E1B] flex justify-center overflow-x-hidden  overflow-y-auto">
             <Menu open={visible}/>
             <section className={cn(DashboardChildren({open:visible}))}>
                 {children}

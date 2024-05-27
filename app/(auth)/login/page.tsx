@@ -43,7 +43,7 @@ const SignInPage = () => {
                             <div>
                             <div className="flex items-center justify-between border border-gray-200 rounded-lg">
                                 <div className="w-[20%] h-[40px] bg-gray-200 rounded-l-lg flex items-center justify-center"><FaUser /></div>
-                                <input
+                                <Input
                                     {...register("email", { required: true })}
                                     type="email"
                                     placeholder="email@email.com"
@@ -55,9 +55,9 @@ const SignInPage = () => {
                             </div>
                             
                             <div>
-                            <div className="flex items-center justify-between border border-gray-200 rounded-lg">
+                            <div className="flex items-center justify-between border border-gray-200 rounded-lg h-[40px]">
                                 <div className="w-[20%] h-[40px] bg-gray-200 rounded-l-lg flex items-center justify-center"><FaKey /></div>
-                                <input
+                                <Input
                                     {...register("password", { required: true })}
                                     type="password"
                                     placeholder="Password"

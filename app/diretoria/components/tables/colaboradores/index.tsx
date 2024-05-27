@@ -40,6 +40,7 @@ import { CredenciasRetorno } from "@/types/credencias"
 import { ColaboradorType } from "@/types/colaborador"
 import { useEffect, useState } from "react";
 import { useColaboradorFindAll } from "@/query/useColaborador";
+import ColaboradoresNewPage from "../../../colaboradores/new/page";
 
 const isData: ColaboradorType[] = []
 
@@ -115,9 +116,7 @@ export function ListaColaboradores() {
               })}
           </DropdownMenuContent>
         </DropdownMenu>
-        <Button variant="outline">
-          <FaUserPlus />
-        </Button>
+        <ColaboradoresNewPage />
       </div>
       <div className="rounded-md border">
         <Table>
@@ -162,7 +161,7 @@ export function ListaColaboradores() {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                 Sem resultados
                 </TableCell>
               </TableRow>
             )}
