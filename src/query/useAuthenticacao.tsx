@@ -49,7 +49,7 @@ export const useAuthenticacao = () => {
       }
 
       toast(
-        <div className="w-full h-full bg-transparent p-4 rounded-lg shadow-lg flex flex-col text-gray-600">
+        <div className="w-full h-full bg-transparent p-4 rounded-lg  flex flex-col text-gray-600">
           <div className="flex items-center justify-start gap-2">
             <CiLock className="fill-green-600" />
             <span className="text-gray-700 font-semibold text-[14px]">
