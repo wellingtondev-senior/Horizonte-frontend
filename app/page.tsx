@@ -4,16 +4,20 @@ import Modal from "./Modal";
 import SignInPage from "./(auth)/login/page";
 import HomeCliente from "./cliente/page";
 import { AuthContext } from "@/context/auth.context";
+import HomeColaborador from "./colaborador/page";
+import HomeDiretor from "./diretoria/page";
 
 export default function Home() {
-  const {isLogger} = useContext(AuthContext);
+  const {isLogger, isUser} = useContext(AuthContext);
   const [isModal, setIsModal] = useState(true);
 
 
   const ComponentHome = () => {
     switch (isLogger) {
       case true:
-        return <HomeCliente />
+        return isUser?.role ==="CLIENTE"? <HomeCliente /> : 
+               isUser?.role ==="COLABORADOR"? <HomeColaborador/> :
+               isUser?.role ==="DIRETOR" || isUser?.role ==="MASTER" ? <HomeDiretor/> :<></>
       case false:
         return <SignInPage />
     }

@@ -8,7 +8,7 @@ import { FaUsers } from "react-icons/fa";
 import { GrDocumentText } from "react-icons/gr";
 
 
-const DashPage = () => {
+const HomeColaborador = () => {
     return (
         <Dashboard>
             <article className="w-full p-10 max-lg:p-4 flex flex-col items-center ">
@@ -53,4 +53,4 @@ const DashPage = () => {
     );
 }
 
-export default DashPage;
+export default HomeColaborador;

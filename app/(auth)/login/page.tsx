@@ -22,7 +22,6 @@ const SignInPage = () => {
     } = useForm<CredenciasRequestType>()
     const authenticacao  = useAuthenticacao();
 
-    const router = useRouter();
     const onSubmit: SubmitHandler<CredenciasRequestType> = (data) => {
         const {email, password} = data
         authenticacao.mutate({email, password})
