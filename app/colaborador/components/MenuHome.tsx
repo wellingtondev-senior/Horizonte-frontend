@@ -25,7 +25,7 @@ const MENUHOME: IMenuHome[] = [
         icon: <VscGraph className="w-10 h-10 " />,
         titulo: "Status",
         subtitulo: "dos Projetos",
-        path: "/status-projetos"
+        path: "/colaborador/status-projetos"
     },
 
     {
@@ -33,35 +33,35 @@ const MENUHOME: IMenuHome[] = [
         icon: <GrDocumentText className="w-10 h-10 " />,
         titulo: "",
         subtitulo: "Ralatórios",
-        path: "/relatorios"
+        path: "/colaborador/relatorios"
     },
     {
         id: 3,
         icon: <FaUsers className="w-10 h-10 " />,
         titulo: "Consultores",
         subtitulo: "e Técnicos",
-        path: "/consultores"
+        path: "/colaborador/consultores"
     },
     {
         id: 4,
         icon: <GiSettingsKnobs className="w-10 h-10 " />,
         titulo: "Painel",
         subtitulo: "de Controle",
-        path: "/painel-controle"
+        path: "/colaborador/painel-controle"
     },
     {
         id: 5,
         icon: <IoTimeOutline className="w-10 h-10 " />,
         titulo: "Prazos",
         subtitulo: "de Validade",
-        path: "/prazos"
+        path: "/colaborador/prazos"
     },
     {
         id: 6,
         icon: <MdOutlineHelpOutline className="w-10 h-10 " />,
         titulo: "",
         subtitulo: "Ajuda",
-        path: "/ajuda"
+        path: "/colaborador/ajuda"
     },
 ]
 
