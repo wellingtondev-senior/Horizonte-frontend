@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import MenuHome from "../components/MenuHome";
 import Dashboard from "../components/layout/Dashboard";
 
