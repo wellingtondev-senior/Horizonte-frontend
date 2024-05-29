@@ -29,6 +29,15 @@ const PROJETOS: IProjetos[] = [
         setor: "Setor",
         responsavel: "Wellington Ramos"
 
+    },
+    {
+        projeto: "Projeto de Teste de Desenvolvimento",
+        status: EstadoProjeto.ATRIBUIDO,
+        inicioData: "29/05/24",
+        estimativaTermino: "29/05/24",
+        setor: "Setor",
+        responsavel: "Wellington Ramos"
+
     }
 ]
 
@@ -53,10 +62,10 @@ const StatusPage = () => {
                 <div className="w-full flex items-center justify-center py-10">
                     <span className="text-[25px] text-white font-bold">Status do Projeto</span>
                 </div>
-                <Accordion type="single" collapsible className="w-full">
+                <Accordion type="single" collapsible className="w-full space-y-2">
                     {
-                        PROJETOS.map((e) => (
-                            <AccordionItem key={e.projeto} value="item-1" className=" border-none ">
+                        PROJETOS.map((e, i) => (
+                            <AccordionItem key={e.projeto+`-`+i} value={`item-${i}`} className=" border-none ">
                                 <AccordionTrigger className="w-full  p-0 rounded-full pr-2 border-[3px] border-gray-800 " style={{ backgroundColor: e.status === "ANDAMENTO" ? "#19FC6C" : e.status === "ATRIBUIDO" ? "#FCF819" : "#1983FC" }}>
                                     <div className="w-full flex items-center justify-between bg-gray-800 rounded-full py-4 px-4">
                                         <div className="w-full flex items-center justify-start">
@@ -71,7 +80,7 @@ const StatusPage = () => {
                                     </div>
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <div className="w-full p-4 bg-white  rounded-[30px] flex flex-col gap-2">
+                                    <div className="w-full p-4 bg-white  rounded-[30px] flex flex-col gap-2 mt-4">
                                         <div className="flex gap-2">
                                             <span className="font-bold text-gray-800">Data de inicio do projeto:</span>
                                             <span>{e.inicioData}</span>
