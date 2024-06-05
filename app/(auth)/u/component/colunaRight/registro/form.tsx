@@ -70,7 +70,7 @@ const RegistroClienteForm = () => {
             <Button className="w-full bg-[#F98E1B] rounded-full font-bold text-[16px] tracking-[0.2px]">
                 Efetuar Refgistro
             </Button>
-            <div className="flex gap-2 items-center">
+            <div className="flex  items-center justify-center">
                 <span className="text-[14px] text-gray-700 font-bold">Você já tem conta?</span>
                 <Button type="button" onClick={() => pageStore.setPage(PageState.AUTH, 0)} variant="ghost" className="text-[14px] text-[#F98E1B] font-bold hover:bg-transparent">Efetuar Login</Button>
             </div>
