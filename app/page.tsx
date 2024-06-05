@@ -1,11 +1,11 @@
 "use client"
 import { useContext, useEffect, useState } from "react"
 import Modal from "./Modal";
-import SignInPage from "./(auth)/login/page";
 import HomeCliente from "./cliente/page";
 import { AuthContext } from "@/context/auth.context";
 import HomeColaborador from "./colaborador/page";
 import HomeDiretor from "./diretoria/page";
+import AuthenticationPage from "./(auth)/u/page";
 
 export default function Home() {
   const {isLogger, isUser} = useContext(AuthContext);
@@ -19,7 +19,7 @@ export default function Home() {
                isUser?.role ==="COLABORADOR"? <HomeColaborador/> :
                isUser?.role ==="DIRETOR" || isUser?.role ==="MASTER" ? <HomeDiretor/> :<></>
       case false:
-        return <SignInPage />
+        return <AuthenticationPage />
     }
   }
 
