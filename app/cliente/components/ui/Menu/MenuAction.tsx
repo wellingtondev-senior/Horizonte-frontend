@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import useMenuState, { useMenutateProps } from "@/store/useMenuState";
+import useMenuState, { useMenuStateProps } from "@/store/useMenuState";
 import { ElementType, ReactNode } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
@@ -29,7 +29,7 @@ const menuAction = tv({
 
 
 export const MenuAction = ({ className, icon: Icon, open }: MenuActionProps) => {
-    const {visible, setVisible} = useMenuState((state:useMenutateProps)=>state);
+    const {visible, setVisible} = useMenuState((state:useMenuStateProps)=>state);
     return (
         <button onClick={setVisible} className={cn(menuAction({ open:visible }))}>
             {

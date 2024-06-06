@@ -12,7 +12,6 @@ const AuthPage = ({ }: AuthPageProps) => {
         <div className="w-full h-full flex flex-col ">
               <Logo className={"w-[300px]"} imageName={"Meio Ambiente"} />
               <UserAuthForm />
-              <Toaster/>
 
         </div>
     );

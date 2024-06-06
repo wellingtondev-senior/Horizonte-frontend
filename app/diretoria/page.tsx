@@ -1,5 +1,4 @@
 import Dashboard from "./components/layout/Dashboard";
-import Stats from "./components/Stats";
 
 
 const HomeDiretor = () => {
@@ -10,7 +9,7 @@ const HomeDiretor = () => {
                     <span className="text-[25px] text-white font-bold">Dashboard Diretor</span>
                 </div>
                <div className="w-full">
-                <Stats/>
+                
                </div>
             </article>
         </Dashboard>

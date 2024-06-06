@@ -21,7 +21,7 @@ const ColunaRight = () => {
     const pageStore = usePageStore((state:usePageStoreProps)=>state)
   
     return (
-        <div className="w-[50%] min-h-screen h-auto flex flex-col items-center justify-center">
+        <div className="w-[50%] max-md:w-full max-lg:w-[500px] m-auto min-h-screen h-auto flex flex-col items-center justify-center">
             {
               FORMSCOMPOMENT.map((Component,i)=>{
                 if(i == pageStore.page){

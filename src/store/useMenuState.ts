@@ -1,18 +1,21 @@
 import { create } from 'zustand';
 
 
-export interface useMenutateProps {
+export interface useMenuStateProps {
     visible: boolean,
-    setVisible: () =>void,
+    setVisible: () => void
 }
-const useMenutate = create<useMenutateProps>((set) => ({
-    visible: false,
-    items:"",
-    setVisible: () => set((state:{visible:boolean}) => ({visible: !state.visible})
-    ),
+const useMenuState = create<useMenuStateProps>((set) => ({
+    visible: true,
+    setVisible: () => set((state) => (
+            { 
+                visible: !state.visible,
+            }
+        )
+        )
     
 
 })
 );
 
-export default useMenutate;
+export default useMenuState;

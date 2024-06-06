@@ -1,14 +1,13 @@
 "use client"
 import { ReactNode } from "react";
-import Menu from "../Menu";
-import useMenuState , { useMenutateProps }from "@/store/useMenuState";
 import { tv, VariantProps } from "tailwind-variants";
-import { cn } from "@/lib/utils";
+import HeaderComponent from "@/components/header";
+import SideBar from "../SideBar";
 
 
 interface DashboardProps extends VariantProps<typeof DashboardChildren> {
-    className?:string;
-    children:ReactNode;
+    className?: string;
+    children: ReactNode;
 }
 
 const DashboardChildren = tv({
@@ -19,21 +18,21 @@ const DashboardChildren = tv({
             false: "left-0 right-0",
         },
     },
-    
-    
+
+
 
 });
 
 
-const Dashboard = ({ children}: DashboardProps) => {
-    const {visible} = useMenuState((state:useMenutateProps)=>state);
+const Dashboard = ({ children }: DashboardProps) => {
     return (
-        <main className="w-full  max-h-screen h-screen bg-gradient-to-r from-[#FACE08] to-[#F98E1B] flex justify-center overflow-x-hidden ">
-            <Menu open={visible}/>
-            <section className={cn(DashboardChildren({open:visible}))}>
+        <section className="w-full min-h-screen bg-white">
+            <HeaderComponent />
+            <SideBar />
+            <article className="max-sm:p-2 p-10">
                 {children}
-            </section>
-        </main>
+            </article>
+        </section>
     );
 }
 
