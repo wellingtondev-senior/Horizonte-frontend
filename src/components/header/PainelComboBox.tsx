@@ -50,13 +50,14 @@ export function PainelComboBox() {
   }, [userRole]);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <div className="max-sm:hidden">
+          <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[200px] justify-between "
         >
           {value
             ? isOption.find((option) => option.value === value)?.label
@@ -93,5 +94,7 @@ export function PainelComboBox() {
         </Command>
       </PopoverContent>
     </Popover>
+
+    </div>
   );
 }
