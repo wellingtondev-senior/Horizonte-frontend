@@ -66,7 +66,7 @@ const SideBar = () => {
                 <Menu.SubitemsTitulo label={items.toUpperCase()} color="white" />
                 {
                     menuItems.map((e, i) => (
-                        <Menu.Subitems key={i} iconSize={"sm"} color={"white"} label={e.label} page={e.page} icon={e.icon} />
+                        <Menu.Subitems key={i}  label={e.label} page={e.page} icon={e.icon} />
 
                     ))
                 }
