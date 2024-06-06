@@ -7,7 +7,7 @@ import useSubMenutate, { useSubMenutateProps } from "@/store/useSubMenuState";
 import { MdSpaceDashboard, MdOutlineViewAgenda } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { IoIosArrowDropleft } from "react-icons/io";
-import { SubMenu, subMenuData } from "@/lib/menuItems";
+import { SubMenu, subMenuData } from "@/lib/menuColaborador";
 import { FaUsers } from "react-icons/fa";
 import { CiBoxes } from "react-icons/ci";
 import { FaPeopleCarryBox } from "react-icons/fa6";

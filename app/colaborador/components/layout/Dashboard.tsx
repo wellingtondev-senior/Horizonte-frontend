@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 import HeaderComponent from "@/components/header";
 import SideBar from "../SideBar";
+import { BreadcrumbWithCustomSeparator } from "@/components/Badcrumb";
 
 
 interface DashboardProps extends VariantProps<typeof DashboardChildren> {
@@ -29,7 +30,8 @@ const Dashboard = ({ children }: DashboardProps) => {
         <section className="w-full min-h-screen bg-white">
             <HeaderComponent />
             <SideBar />
-            <article className="max-sm:p-2 p-10">
+            <article className="pt-[70px] px-10 max-sm:px-2 max-lg:px-4 space-y-4 ">
+                <BreadcrumbWithCustomSeparator />
                 {children}
             </article>
         </section>

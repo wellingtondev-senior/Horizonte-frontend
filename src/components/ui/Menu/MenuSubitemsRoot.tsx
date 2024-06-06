@@ -9,7 +9,7 @@ interface MenuSubitemsRootProps {
 
 
 const animateSubMenu = tv({
-    base: "fixed z-[2]  top-0 bottom-0 w-[180px]  bg-[#241200] transition-1 ease-in-out duration-700",
+    base: "fixed z-[2]  top-0 bottom-0 w-[240px]  bg-[#241200] transition-1 ease-in-out duration-700",
     variants: {
         openSubItems: {
             true: "left-[60px]",

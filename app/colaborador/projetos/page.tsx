@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import MenuHome from "../components/MenuHome";
 import Dashboard from "../components/layout/Dashboard";
 import {
     Accordion,
@@ -8,6 +7,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 import { EstadoProjeto } from "@/enums/satusProjeto.enum";
+import { Badge } from "@/components/ui/badge";
 
 
 
@@ -58,11 +58,26 @@ const StatusPage = () => {
     }
     return (
         <Dashboard>
-            <article className="w-full p-10 max-lg:p-4 flex flex-col items-center ">
-                <div className="w-full flex items-center justify-center py-10">
-                    <span className="text-[25px] text-white font-bold">Status do Projeto</span>
+            <article className="w-full  flex flex-col items-start gap-4 border border-gray-200 shadow-sm rounded-lg p-2">
+                <div className="w-full flex items-center justify-between h-[60px] border-b-[1px] border-gray-200 px-2">
+                    <div>
+                        <span className="text-[18px] text-gray-700 font-bold">Projetos</span>
+                    </div>
+                    <div>
+                        <Button variant="outline">Novo Projeto</Button>
+                    </div>
                 </div>
-                <Accordion type="single" collapsible className="w-full space-y-2">
+                <div className=" w-full border border-gray-200 shadow-sm rounded-lg p-2 grid  grid-cols-2 max-md:grid-cols-1 gap-4">
+                    <div className="bg-gray-100 rounded-lg h-[50px] p-4 flex items-center justify-between">
+                        <span className="font-bold text-[16px] text-gray-600">Nome do Projeto</span>
+                        <Badge className="rounded-full bg-green-200 border-[1px] border-green-700 text-green-900 hover:text-white text-[12px]">Projeto Andamento</Badge>
+                    </div>
+                    <div className="bg-gray-100 rounded-lg h-[50px] p-4 flex items-center justify-between">
+                        <span className="font-bold text-[16px] text-gray-600">Nome do Projeto</span>
+                        <Badge className="rounded-full bg-green-200 border-[1px] border-green-700 text-green-900 hover:text-white text-[12px]">Projeto Andamento</Badge>
+                    </div>
+                </div>
+                {/* <Accordion type="single" collapsible className="w-full space-y-2">
                     {
                         PROJETOS.map((e, i) => (
                             <AccordionItem key={e.projeto+`-`+i} value={`item-${i}`} className=" border-none ">
@@ -102,7 +117,7 @@ const StatusPage = () => {
                             </AccordionItem>
                         ))
                     }
-                </Accordion>
+                </Accordion> */}
             </article>
         </Dashboard>
     );

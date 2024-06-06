@@ -7,10 +7,10 @@ interface MenuSubitemsTituloProps extends VariantProps<typeof titulo>{
 }
 
 const titulo = tv({
-    base: "font-bold  text-[20px] flex items-center justify-center py-6",
+    base: "font-bold  text-[16px] flex items-center justify-center py-6",
     variants:{
         color:{
-            sky:"text-sky-200",
+            white:"text-white",
             orange:"text-orange-300"
         }
     },

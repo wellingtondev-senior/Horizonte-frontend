@@ -1,3 +1,4 @@
+"use client"
 import {
     Avatar,
     AvatarFallback,
@@ -14,8 +15,12 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
+import { AuthContext } from "@/context/auth.context"
+import { useContext } from "react"
   
   export function UserNav() {
+   const authContext = useContext(AuthContext)
+  
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -52,8 +57,8 @@ import {
             <DropdownMenuItem>New Team</DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            Log out
+          <DropdownMenuItem onClick={authContext.isLogout}>
+            Sair
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuContent>

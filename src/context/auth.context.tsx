@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { VereficSession } from '@/lib/vereficSession';
 import { CredenciasRetorno } from '@/types/credencias';
+import { CookiesDB } from '@/lib/cookies';
 
 export interface AuthType {
     isUser: CredenciasRetorno | null;
@@ -23,7 +24,8 @@ function AuthProvider({ children }: any) {
     const [isLogger, setIsLogger] = useState(false)
     const [isError, setIsError] = useState({ error: false, message: '' })
     const [isUser,  setIsUser] = useState<CredenciasRetorno | null >(null);
-    const router = useRouter()
+    const router = useRouter();
+   
 
     function validarToken(): boolean {
         const token = Cookies.get("jwt-secret")?.valueOf();
@@ -49,7 +51,7 @@ function AuthProvider({ children }: any) {
 
     function isLogout(){
         const token = Cookies.remove("jwt-secret");
-        router.replace("/login")
+        router.replace("/u")
     }
 
 

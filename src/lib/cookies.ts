@@ -1,7 +1,6 @@
 import { ENV } from '@/config/env';
 import Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
-import { cookies } from "next/headers"
 
 const CookiesDB = {
    set:(nameCookie:string, data:{} | [])=>{
