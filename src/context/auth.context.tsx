@@ -41,7 +41,7 @@ function AuthProvider({ children }: any) {
     }
 
     function isLogout(){
-        const token = Cookies.remove("jwt-secret");
+        Cookies.remove("jwt-secret");
         router.replace("/u")
     }
 
