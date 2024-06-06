@@ -7,7 +7,7 @@ import useSubMenutate, { useSubMenutateProps } from "@/store/useSubMenuState";
 import { MdSpaceDashboard, MdOutlineViewAgenda } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { IoIosArrowDropleft } from "react-icons/io";
-import { SubMenu, subMenuData } from "@/lib/menuColaborador";
+import { SubMenu, menuColaborador,  } from "@/lib/menuColaborador";
 import { FaUsers } from "react-icons/fa";
 import { CiBoxes } from "react-icons/ci";
 import { FaPeopleCarryBox } from "react-icons/fa6";
@@ -41,8 +41,8 @@ const SideBar = () => {
         } else {
             setItems(item.toLowerCase());
         }
-        subMenuData(item.toLowerCase())?.data ?? subMenuState.setVisible()
-        setMenuItems(subMenuData(item.toLowerCase())?.data ?? [])
+        menuColaborador(item.toLowerCase())?.data ?? subMenuState.setVisible()
+        setMenuItems(menuColaborador(item.toLowerCase())?.data ?? [])
     }
  
     return (
@@ -59,7 +59,7 @@ const SideBar = () => {
                 <Menu.ButtonTooltip label="Integrações" onAction={() => setOpenSubItems("Integracao")} buttonIcon={SiApachekafka } />
             </Menu.Root>
             <Menu.SubitemsRoot openSubItems={subMenuState.visible}>
-                <Menu.SubitemsTitulo label={items.toUpperCase()} color="sky" />
+                <Menu.SubitemsTitulo label={items.toUpperCase()} color="white" />
                 {/* <ItemsComponent/> */}
             </Menu.SubitemsRoot>
         </>
