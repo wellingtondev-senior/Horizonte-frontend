@@ -57,7 +57,9 @@ const StatusPage = () => {
         }
     }
     return (
-        <Dashboard>
+        <Dashboard>           
+             <h2 className="text-3xl font-bold tracking-tight">Gerenciador de Projetos</h2>
+          
             <article className="w-full  flex flex-col items-start gap-4 border border-gray-200 shadow-sm rounded-lg p-2">
                 <div className="w-full flex items-center justify-between h-[60px] border-b-[1px] border-gray-200 px-2">
                     <div>

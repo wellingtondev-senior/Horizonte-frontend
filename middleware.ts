@@ -25,7 +25,7 @@ export async function middleware(req: NextRequest) {
   const tokenMaster = cookies().get("jwt-secret");
 
   const publicPaths = [
-    '/auth',
+    '/(auth)',
     '/cliente/registro',
     '/cliente/activate'
   ];
@@ -37,17 +37,16 @@ export async function middleware(req: NextRequest) {
   if (tokenMaster?.value) {
     try {
       const user: CredenciasRetorno = await VereficSession.isTokenVerefic(tokenMaster.value);
-
       if (gestorAcesso(user.role, req.nextUrl.pathname)) {
         return NextResponse.next();
       } else {
-        return NextResponse.redirect(new URL('/login', req.url));
+        return NextResponse.redirect(new URL('/u', req.url));
       }
     } catch (error) {
-      return NextResponse.redirect(new URL('/login', req.url));
+      return NextResponse.redirect(new URL('/u', req.url));
     }
   } else {
-    return NextResponse.redirect(new URL('/login', req.url));
+    return NextResponse.redirect(new URL('/u', req.url));
   }
 }
 
