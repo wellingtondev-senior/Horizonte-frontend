@@ -7,6 +7,7 @@ import useSubMenutate, { useSubMenutateProps } from "@/store/useSubMenuState";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { IconType } from "react-icons/lib";
+import useMenuState, { useMenuStateProps } from "@/store/useMenuState";
 
 interface MenuSubitemsTituloProps extends VariantProps<typeof item> {
     label: string,
@@ -36,6 +37,7 @@ const item = tv({
 
 
 export const MenuSubitems = ({ label, page, icon }: MenuSubitemsTituloProps) => {
+    const menuState = useMenuState((state: useMenuStateProps) => state);
     const subMenuState = useSubMenutate((state: useSubMenutateProps) => state);
     const [isHover, setIsHover] = useState<boolean>(false);
     
@@ -47,6 +49,7 @@ export const MenuSubitems = ({ label, page, icon }: MenuSubitemsTituloProps) => 
         onClick={() => {
             router.push(page)
             subMenuState.setVisible();
+            menuState.setVisible();
         }} 
         onMouseEnter={()=>setIsHover(!isHover)}
         onMouseLeave={()=>setIsHover(!isHover)}

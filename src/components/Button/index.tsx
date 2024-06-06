@@ -9,15 +9,15 @@ const button = tv({
     variants: {
         background: {
             transparent: "bg-transparent",
-            red:"bg-red-600",
-            green:"bg-green-600",
-            orange:"bg-orange-600",
-            sky:"bg-sky-600",
-            purple:"bg-purple-600"
+            red: "bg-red-600",
+            green: "bg-green-600",
+            orange: "bg-orange-600",
+            sky: "bg-sky-600",
+            purple: "bg-purple-600"
         },
         size: {
             sm: "h-8 w-8",
-            full:"w-full h-8"
+            full: "w-full h-8"
         },
     },
     defaultVariants: {
@@ -31,23 +31,23 @@ interface ButtonProps extends VariantProps<typeof button> {
     icon?: ElementType;
     children?: string;
     onTap?: () => void;
-    iconSize?:"sm" | "md" | "lg";
-    iconFill?:"orange" | "sky" | "gray"
-    tooltip:string
+    iconSize?: "sm" | "md" | "lg";
+    iconFill?: "orange" | "sky" | "gray"
+    tooltip: string
 
 }
 
 // Restante do código
-const Button = ({ tooltip,iconFill, size, iconSize, background, onTap, children, icon, ...props }: ButtonProps) => {
+const Button = ({ tooltip, iconFill, size, iconSize, background, onTap, children, icon, ...props }: ButtonProps) => {
 
     return (
         <TooltipProvider>
             <Tooltip>
                 <TooltipTrigger asChild>
-                <button className={button({ background, size })} onClick={onTap} {...props}>
-        { icon ? <IconButton  icon={icon} className={""} />:<></>}
-        {children ? <span>{children}</span> :<></>} 
-        </button>
+                    <button className={button({ background, size })} onClick={onTap} {...props}>
+                        {icon ? <IconButton icon={icon} className={""} /> : <></>}
+                        {children ? <span>{children}</span> : <></>}
+                    </button>
                 </TooltipTrigger>
                 <TooltipContent>
                     {tooltip}
