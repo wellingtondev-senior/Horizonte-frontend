@@ -45,7 +45,7 @@ const Button = ({ tooltip,iconFill, size, iconSize, background, onTap, children,
             <Tooltip>
                 <TooltipTrigger asChild>
                 <button className={button({ background, size })} onClick={onTap} {...props}>
-        { icon ? <IconButton iconSize={iconSize} icon={icon} />:<></>}
+        { icon ? <IconButton  icon={icon} className={""} />:<></>}
         {children ? <span>{children}</span> :<></>} 
         </button>
                 </TooltipTrigger>
