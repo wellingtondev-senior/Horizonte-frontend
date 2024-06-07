@@ -1,3 +1,4 @@
+"use client"
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -40,9 +41,10 @@ export function PainelComboBox() {
   const [isOption, setIsOption] = useState<{ value: string; label: string }[]>(
     []
   );
+ 
+
   useEffect(() => {
     if (userRole) {
-      authContext.vereficSession()
       setValue(userRole.toLocaleLowerCase());
       console.log(userRole)
       setIsOption(COMBO[userRole]);

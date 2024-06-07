@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { AuthContext } from "@/context/auth.context";
 import { encodeBase64 } from "@/lib/codificarMD5";
 import { CookiesDB } from "@/lib/cookies";
 import api from "@/services/api";
 import { CredenciasRequestType, CredenciasResponseType } from "@/types/credencias";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 import { CiLock } from "react-icons/ci";
 import { toast } from "sonner";
 
@@ -15,11 +17,13 @@ async function authenticacao({ email, password }: CredenciasRequestType) {
 
 export const useAuthenticacao = () => {
   const queryClient = useQueryClient();
+  const authContext = useContext(AuthContext);
   const router = useRouter();
   
   return useMutation({
     mutationFn: authenticacao,
     onSuccess: async (data: CredenciasResponseType) => {
+      
       const { role, active, access_token, user } = data.message;
       CookiesDB.set("jwt-secret", access_token);
       
@@ -67,6 +71,7 @@ export const useAuthenticacao = () => {
         </div>
       );
       router.replace(redirectPath);
+      authContext.vereficSession()
     },
     onError: async (err) => {
       console.error("Error", err);

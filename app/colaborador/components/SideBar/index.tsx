@@ -4,9 +4,8 @@ import { Menu, } from "@/components/ui/Menu";
 import { RiMenu2Fill } from "react-icons/ri";
 import useMenuState, { useMenuStateProps } from "@/store/useMenuState";
 import useSubMenutate, { useSubMenutateProps } from "@/store/useSubMenuState";
-import { MdSpaceDashboard, MdOutlineViewAgenda, MdOutlineHelpOutline } from "react-icons/md";
+import { MdSpaceDashboard, MdOutlineViewAgenda } from "react-icons/md";
 import { useRouter } from "next/navigation";
-import { IoIosArrowDropleft } from "react-icons/io";
 import { FaUsers } from "react-icons/fa";
 import { CiBoxes } from "react-icons/ci";
 import { FaPeopleCarryBox } from "react-icons/fa6";
@@ -14,10 +13,7 @@ import { BsFileEarmarkPdf } from "react-icons/bs";
 import { SlCreditCard } from "react-icons/sl";
 import { SiApachekafka } from "react-icons/si";
 import { SubMenu, menuColaborador } from "@/lib/menuColaborador";
-import { VscGraph } from "react-icons/vsc";
-import { GrDocumentText } from "react-icons/gr";
-import { GiSettingsKnobs } from "react-icons/gi";
-import { IoTimeOutline } from "react-icons/io5";
+import { IoHomeOutline } from "react-icons/io5";
 
 
 const SideBar = () => {
@@ -53,6 +49,7 @@ const SideBar = () => {
         <>
             <Menu.Root open={menuState.visible}>
                 <Menu.Action onOpenAtion={() => actionMenu()} menuActionIcon={RiMenu2Fill} />
+                <Menu.ButtonTooltip label="Home" onAction={() => router.push("/")} buttonIcon={IoHomeOutline} />
                 <Menu.ButtonTooltip label="Dashboard" onAction={() => setOpenSubItems("Dashboard")} buttonIcon={MdSpaceDashboard} />
                 <Menu.ButtonTooltip label="Agenda" onAction={() => setOpenSubItems("Agenda")} buttonIcon={MdOutlineViewAgenda} />
                 <Menu.ButtonTooltip label="Clientes" onAction={() => setOpenSubItems("Clientes")} buttonIcon={FaUsers} />
