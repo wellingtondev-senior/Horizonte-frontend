@@ -49,7 +49,7 @@ const SideBar = () => {
         <>
             <Menu.Root open={menuState.visible}>
                 <Menu.Action onOpenAtion={() => actionMenu()} menuActionIcon={RiMenu2Fill} />
-                <Menu.ButtonTooltip label="Home" onAction={() => router.push("/colaboradors")} buttonIcon={IoHomeOutline} />
+                <Menu.ButtonTooltip label="Home" onAction={() => router.push("/colaborador")} buttonIcon={IoHomeOutline} />
                 <Menu.ButtonTooltip label="Dashboard" onAction={() => setOpenSubItems("Dashboard")} buttonIcon={MdSpaceDashboard} />
                 <Menu.ButtonTooltip label="Agenda" onAction={() => setOpenSubItems("Agenda")} buttonIcon={MdOutlineViewAgenda} />
                 <Menu.ButtonTooltip label="Clientes" onAction={() => setOpenSubItems("Clientes")} buttonIcon={FaUsers} />
