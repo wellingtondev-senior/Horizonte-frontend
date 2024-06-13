@@ -71,8 +71,12 @@ const StatusPage = () => {
                     </div>
                 </div>
                 <div className=" w-full flex max-md:flex-col items-start justify-between gap-4">
-                    <div className="w-[50%] max-md:w-full max-md:h-[400px] h-full   border border-gray-200 shadow-sm rounded-lg p-2">
-                        <PieChart dataPie={[4, 25, 34]} />
+                    <div className="w-[50%] max-md:w-full max-md:h-[400px] h-full   border border-gray-200 shadow-sm rounded-lg p-2 flex flex-col gap-[5px] ">
+                        <span className="font-bold text-[16px] text-gray-700">Demonstrativo gráfico do status do projeto</span>
+                        <span className="text-[14px] text-gray-400">Um resumo visual do progresso e estado atual de um projeto.</span>
+                        <div className="mt-10">
+                            <PieChart dataPie={[4, 25, 34]} />
+                        </div>
                     </div>
                     <div className="w-[50%] max-md:w-full border max-h-screen h-auto overflow-y-auto border-gray-200 shadow-sm rounded-lg p-2 flex flex-col gap-4">
                         <div className="bg-gray-100 rounded-lg h-[50px] p-4 flex items-center justify-between">
