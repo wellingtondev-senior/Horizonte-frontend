@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -21,13 +21,13 @@ import { useRouter } from "next/navigation";
 import { Role } from "@/enums/role.enum";
 
 interface ICombo {
-  CLIENTE:{ value: string; label: string }[],
-  COLABORADOR:{ value: string; label: string }[],
-  DIRETOR:{ value: string; label: string }[],
-  MASTER:{ value: string; label: string }[],
+  CLIENTE: { value: string; label: string }[],
+  COLABORADOR: { value: string; label: string }[],
+  DIRETOR: { value: string; label: string }[],
+  MASTER: { value: string; label: string }[],
 }
 
-const COMBO:ICombo = {
+const COMBO: ICombo = {
   CLIENTE: [{ value: "cliente", label: "Gestor Cliente" }],
   COLABORADOR: [
     { value: "cliente", label: "Gestor Cliente" },
@@ -47,41 +47,28 @@ export function PainelComboBox() {
   const [open, setOpen] = useState(false);
   const authContext = useContext(AuthContext);
   const userRole = authContext.isUser?.role || null;
+  const [value, setValue] = useState<string>("");
+  const [isOption, setIsOption] = useState<{ value: string; label: string }[]>([]);
 
-  
-  const [value, setValue] = useState("");
-  const [isOption, setIsOption] = useState<{ value: string; label: string }[]>(
-    []
-  );
-  
-    function getAllPaths(url: string): string[] {
-      // Cria uma instância da classe URL a partir da string fornecida
-      const parsedUrl = new URL(url);
-  
-      // Obtém o pathname, que contém a parte do caminho da URL
-      const pathname = parsedUrl.pathname;
-  
-      // Divide o pathname em partes, separando pelos "/"
-      const paths = pathname.split('/').filter(part => part.length > 0);
-  
-      return paths;
-    }
+  function getAllPaths(url: string): string[] {
+    const parsedUrl = new URL(url);
+    const pathname = parsedUrl.pathname;
+    return pathname.split('/').filter(part => part.length > 0);
+  }
 
   useEffect(() => {
     const url = window.location.href;
     const path = getAllPaths(url);
-   
+
     if (userRole) {
-      if(!!path[0]){
-        const role = path[0].toLocaleUpperCase() as Role;
-        console.log(role)
-         setValue(path[0]);
-         setIsOption(COMBO[userRole]);
-      }else{
-        setValue(userRole.toLocaleLowerCase);
+      const role = path[0]?.toUpperCase() as Role;
+      if (role) {
+        setValue(path[0]);
+        setIsOption(COMBO[role]);
+      } else {
+        setValue(userRole.toLowerCase());
         setIsOption(COMBO[userRole]);
       }
-      
     }
   }, [userRole]);
 
@@ -93,9 +80,9 @@ export function PainelComboBox() {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[200px] justify-between "
+            className="w-[200px] justify-between"
           >
-            {value
+            {value !== ""
               ? isOption.find((option) => option.value === value)?.label
               : "Selecione o Gestor..."}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -113,7 +100,7 @@ export function PainelComboBox() {
                     value={option.value}
                     onSelect={(currentValue) => {
                       setValue(currentValue === value ? "" : currentValue);
-                      router.push(`/${currentValue}`)
+                      router.push(`/${currentValue}`);
                       setOpen(false);
                     }}
                   >
@@ -131,7 +118,6 @@ export function PainelComboBox() {
           </Command>
         </PopoverContent>
       </Popover>
-
     </div>
   );
 }
