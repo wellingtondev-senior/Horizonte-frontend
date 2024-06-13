@@ -21,7 +21,8 @@ export type SubMenu = {
                 <Menu.Subitems iconSize={"sm"} color={"white"} label={"Ajuda"} page={"/colaborador/ajuda"} icon={MdOutlineHelpOutline}/>  */}
 
 export const menuColaborador = (item:string)=>{
- const data:menuColaboradorType[] = [{
+ const data:menuColaboradorType[] = [
+    {
     item: "dashboard",
     data: [
         {
@@ -54,11 +55,23 @@ export const menuColaborador = (item:string)=>{
             page: "/colaborador/ajuda",
             icon:MdOutlineHelpOutline
         },
-
+ 
     ]
-   
+},
+{
+    item: "configurações",
+    data: [
+        {
+            label: "Storage",
+            page: "/colaborador/storage",
+            icon:VscGraph
+        },   
+ 
+    ]
+}
 
-}]
+
+]
 const filter  = data.filter(element=>element.item == item)
 return  filter[0]
 }
