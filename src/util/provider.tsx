@@ -1,11 +1,7 @@
 "use client"
-
 import { ReactNode, useState } from "react";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {
-    useQuery,
-    useMutation,
-    useQueryClient,
     QueryClient,
     QueryClientProvider,
   } from '@tanstack/react-query'

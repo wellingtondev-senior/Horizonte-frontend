@@ -10,6 +10,7 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { useQueryProvedorCreate, useQueryProvedorFindAll } from "@/query/useQueryProvedor";
 import { useEffect } from "react";
+import { QueryCache } from "@tanstack/react-query";
 
 
 const invoices = [
@@ -23,13 +24,27 @@ const invoices = [
 
 export function TableProvedor() {
     
-
+   
     const queryProvedorFindAll = useQueryProvedorFindAll();
-
+ const queryCache = new QueryCache({
+        onError: (error) => {
+          console.log(error)
+        },
+        onSuccess: (data) => {
+          console.log(data)
+        },
+        onSettled: (data, error) => {
+          console.log(data, error)
+        },
+      })
 
  useEffect(()=>{
-    console.log(queryProvedorFindAll.data)
- },[])
+    const query = queryCache.find({queryKey: ['queryProvedorFindAll']})
+    console.log(query)
+    if(queryProvedorFindAll.isStale){
+        queryProvedorFindAll.refetch()
+    }
+ },[queryProvedorFindAll.isStale, queryProvedorFindAll.refetch])
 
 
 
