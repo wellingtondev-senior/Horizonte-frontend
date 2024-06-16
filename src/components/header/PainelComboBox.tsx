@@ -36,7 +36,7 @@ const COMBO: ICombo = {
   DIRETOR: [
     { value: "cliente", label: "Gestor Cliente" },
     { value: "colaborador", label: "Gestor Colaborador" },
-    { value: "diretor", label: "Gestor Diretoria" },
+    { value: "diretoria", label: "Gestor Diretoria" },
     { value: "master", label: "Gestor Master" },
   ],
   MASTER: [{ value: "master", label: "Gestor Master" }],
@@ -50,20 +50,31 @@ export function PainelComboBox() {
   const [value, setValue] = useState<string>("");
   const [isOption, setIsOption] = useState<{ value: string; label: string }[]>([]);
 
-  function getAllPaths(url: string): string[] {
-    const parsedUrl = new URL(url);
-    const pathname = parsedUrl.pathname;
-    return pathname.split('/').filter(part => part.length > 0);
-  }
+
+  
+    function getAllPaths(url: string): string[] {
+      // Cria uma instância da classe URL a partir da string fornecida
+      const parsedUrl = new URL(url);
+  
+      // Obtém o pathname, que contém a parte do caminho da URL
+      const pathname = parsedUrl.pathname;
+  
+      // Divide o pathname em partes, separando pelos "/"
+      const paths = pathname.split('/').filter(part => part.length > 0);
+  
+      return paths;
+    }
+  
+  
 
   useEffect(() => {
     const url = window.location.href;
-    const path = getAllPaths(url);
-
+      const paths = getAllPaths(url);
+    
     if (userRole) {
-      const role = path[0]?.toUpperCase() as Role;
+      const role = paths[0]?.toUpperCase() as Role;
       if (role && COMBO[role]) {
-        setValue(path[0]);
+        setValue(paths[0]);
         setIsOption(COMBO[role]);
       } else {
         setValue(userRole.toLowerCase());
@@ -94,25 +105,45 @@ export function PainelComboBox() {
             <CommandList>
               <CommandEmpty>Nenhum gestor encontrado.</CommandEmpty>
               <CommandGroup>
-                {isOption.map((option) => (
+                {
+                  userRole ?
+                  COMBO[userRole].map((option) => (
+                    <CommandItem
+                      key={option.value}
+                      value={option.value}
+                      onSelect={(currentValue) => {
+                        setValue(currentValue === value ? "" : currentValue);
+                        router.push(`/${currentValue}`);
+                        setOpen(false);
+                      }}
+                    >
+                      <Check
+                        className={cn(
+                          "mr-2 h-4 w-4",
+                          value === option.value ? "opacity-100" : "opacity-0"
+                        )}
+                      />
+                      {option.label}
+                    </CommandItem>
+                  )):
                   <CommandItem
-                    key={option.value}
-                    value={option.value}
-                    onSelect={(currentValue) => {
-                      setValue(currentValue === value ? "" : currentValue);
-                      router.push(`/${currentValue}`);
-                      setOpen(false);
-                    }}
-                  >
-                    <Check
-                      className={cn(
-                        "mr-2 h-4 w-4",
-                        value === option.value ? "opacity-100" : "opacity-0"
-                      )}
-                    />
-                    {option.label}
-                  </CommandItem>
-                ))}
+                  value={'CLIENTE'}
+                  onSelect={(currentValue) => {
+                    setValue(currentValue === value ? "" : currentValue);
+                    router.push(`/${currentValue}`);
+                    setOpen(false);
+                  }}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      value === "CLIENTE" ? "opacity-100" : "opacity-0"
+                    )}
+                  />
+                  Gestor Cliente
+                </CommandItem>
+                }
+               
               </CommandGroup>
             </CommandList>
           </Command>
