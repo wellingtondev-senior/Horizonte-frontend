@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import Dashboard from "../components/layout/Dashboard";
-import { BsDatabaseAdd } from "react-icons/bs";
+import { NewProvedor } from "../components/NewProvedor";
+import { TableProvedor } from "../components/TableProvedores";
 
 const HomeDiretor = () => {
     return (
@@ -12,14 +12,11 @@ const HomeDiretor = () => {
                         <span className="text-[18px] text-gray-700 font-bold ">Lista de todos os Provedores</span>
                     </div>
                     <div>
-                        <Button variant="outline" className="p-0 px-4 h-[40px] gap-2">
-                            <BsDatabaseAdd className="w-4 h-4"/>
-                            <span>Criar um Novo</span>
-                        </Button>
+                      {/* < NewProvedor/> */}
                     </div>
                 </div>
-                <div>
-                    dd
+                <div className="w-full">
+                    <TableProvedor/>
                 </div>
             </article>
         </Dashboard>
