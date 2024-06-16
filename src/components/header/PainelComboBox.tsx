@@ -62,12 +62,12 @@ export function PainelComboBox() {
 
     if (userRole) {
       const role = path[0]?.toUpperCase() as Role;
-      if (role) {
+      if (role && COMBO[role]) {
         setValue(path[0]);
         setIsOption(COMBO[role]);
       } else {
         setValue(userRole.toLowerCase());
-        setIsOption(COMBO[userRole]);
+        setIsOption(COMBO[userRole] || []);
       }
     }
   }, [userRole]);
@@ -83,7 +83,7 @@ export function PainelComboBox() {
             className="w-[200px] justify-between"
           >
             {value !== ""
-              ? isOption.find((option) => option.value === value)?.label
+              ? isOption?.find((option) => option.value === value)?.label || "Selecione o Gestor..."
               : "Selecione o Gestor..."}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
