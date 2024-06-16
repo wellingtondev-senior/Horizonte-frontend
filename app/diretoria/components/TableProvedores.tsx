@@ -26,25 +26,9 @@ export function TableProvedor() {
     
    
     const queryProvedorFindAll = useQueryProvedorFindAll();
- const queryCache = new QueryCache({
-        onError: (error) => {
-          console.log(error)
-        },
-        onSuccess: (data) => {
-          console.log(data)
-        },
-        onSettled: (data, error) => {
-          console.log(data, error)
-        },
-      })
 
- useEffect(()=>{
-    const query = queryCache.find({queryKey: ['queryProvedorFindAll']})
-    console.log(query)
-    if(queryProvedorFindAll.isStale){
-        queryProvedorFindAll.refetch()
-    }
- },[queryProvedorFindAll.isStale, queryProvedorFindAll.refetch])
+
+
 
 
 
@@ -60,17 +44,26 @@ export function TableProvedor() {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {invoices.map((invoice) => (
-                    <TableRow key={invoice.invoice}>
-                        <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                        <TableCell>{invoice.paymentStatus}</TableCell>
-                        <TableCell>{invoice.paymentMethod}</TableCell>
-                        <TableCell>{invoice.paymentMethod}</TableCell>
-                        <TableCell className="text-right">
+                {
+                    queryProvedorFindAll.isLoading ?
+                    <TableRow >
+                    <TableCell rowSpan={5} className="font-medium h-[40px]">Sem valor</TableCell>
+                  
+                 
+                </TableRow> :
+                queryProvedorFindAll.data?.message.map((provedor)=>(
+                    <TableRow key={provedor.provedor} className="h-[40px] py-2">
+                        <TableCell className="font-medium ">{provedor.nome}</TableCell>
+                        <TableCell className="">{provedor.provedor}</TableCell>
+                        <TableCell className="">{provedor.limiteArmazenamento}</TableCell>
+                        <TableCell className="">0.0</TableCell>
+                        <TableCell className="text-right ">
                             <Switch id="airplane-mode" />
                         </TableCell>
                     </TableRow>
-                ))}
+                ))
+                }
+                
             </TableBody>
             
         </Table>

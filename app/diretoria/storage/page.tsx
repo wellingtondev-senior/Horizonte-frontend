@@ -12,7 +12,7 @@ const HomeDiretor = () => {
                         <span className="text-[18px] text-gray-700 font-bold ">Lista de todos os Provedores</span>
                     </div>
                     <div>
-                      {/* < NewProvedor/> */}
+                      < NewProvedor/>
                     </div>
                 </div>
                 <div className="w-full">

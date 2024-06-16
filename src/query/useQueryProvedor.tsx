@@ -28,7 +28,9 @@ async function queryProvedorFindAll() {
     return useQuery({
       queryKey: ['queryProvedorFindAll'],
       queryFn: queryProvedorFindAll,
-      staleTime: 10 * 60 * 1000,
+      refetchOnWindowFocus:false,
+      staleTime:10 * 60 * 1000,
+      refetchInterval:10 * 60 * 1000,
       gcTime: 10 * 60 * 1000,
       
     });
