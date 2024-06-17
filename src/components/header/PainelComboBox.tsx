@@ -46,19 +46,37 @@ const COMBO: ICombo = {
 export function PainelComboBox() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const account = useAccount();;
+  const account  = useAccount();
   const [value, setValue] = useState<string>("");
   const [isOption, setIsOption] = useState<{ value: string; label: string }[]>([]);
 
 
   
-   
+    function getAllPaths(url: string): string[] {
+      // Cria uma instância da classe URL a partir da string fornecida
+      const parsedUrl = new URL(url);
+  
+      // Obtém o pathname, que contém a parte do caminho da URL
+      const pathname = parsedUrl.pathname;
+  
+      // Divide o pathname em partes, separando pelos "/"
+      const paths = pathname.split('/').filter(part => part.length > 0);
+  
+      return paths;
+    }
+  
   
 
   useEffect(() => {
+    const url = window.location.href;
+      const paths = getAllPaths(url);
+    
     if (account.isUser?.role) {
-        setValue(account.isUser?.role.toLocaleLowerCase());
+      const role = paths[0]?.toUpperCase() as Role;
+      if (role && COMBO[role]) {
+        setValue(paths[0]);
         setIsOption(COMBO[account.isUser?.role]);
+      } 
     }
   }, [account.isUser?.role]);
 
