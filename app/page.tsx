@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import HomeCliente from "./cliente/page";
 import { AuthContext } from "@/context/auth.context";
 import HomeColaborador from "./colaborador/page";
-import HomeDiretor from "./diretoria/page";
+import HomeDiretor from "./diretor/page";
 import AuthenticationPage from "./(auth)/u/page";
 
 export default function Home() {

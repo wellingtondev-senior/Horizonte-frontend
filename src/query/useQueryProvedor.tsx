@@ -7,7 +7,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner"
 import ToastComponent from "@/components/Toast";
-import { ProvedorRequetType, ProvedorResponseType } from "@/types/provedor";
+import { Provedor, ProvedorRequetType, ProvedorResponseType } from "@/types/provedor";
 
 
 
@@ -18,10 +18,8 @@ async function create({ nome, provedor, userId, limiteArmazenamento }: ProvedorR
   return data
 }
 
-async function update({ nome, provedor, userId, limiteArmazenamento }: ProvedorRequetType) {
-  const { data } = await api.post<ProvedorResponseType>("/provedores/create", {
-    nome, provedor, userId, limiteArmazenamento
-  });
+async function update(provedores:Provedor[]) {
+  const { data } = await api.patch<ProvedorResponseType>("/provedores", provedores);
   return data
 }
 async function queryProvedorFindAll() {
@@ -48,12 +46,24 @@ export const useQueryProvedorCreate = () => {
   return useMutation({
     mutationFn: create,
     onSuccess: async (data: ProvedorResponseType) => {
-      toast(<ToastComponent error={false} title="Codigo Vereficado" description="Sucesso, aguarde o redirecionamento"/>)
-      router.replace("/cliente")
+      toast(<ToastComponent error={false} title="Novo Provedor" description="Cadastro com sucesso"/>)
     },
     onError: async (err) => {
-      return toast(<ToastComponent error={true} title="Código Error" description="Código incorreto"/>)
+      return toast(<ToastComponent error={true} title="Erro Provedor" description="Erro ao criar novo Provedor"/>)
     }
   });
 }
 
+export const useQueryProvedorUpdate = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  return useMutation({
+    mutationFn: update,
+    onSuccess: async (data: ProvedorResponseType) => {
+      toast(<ToastComponent error={false} title="Provedor Atualizado" description="Atualização efetuada"/>)
+    },
+    onError: async (err) => {
+      return toast(<ToastComponent error={true} title="Provedor Error" description="Error ao atualizar"/>)
+    }
+  });
+}

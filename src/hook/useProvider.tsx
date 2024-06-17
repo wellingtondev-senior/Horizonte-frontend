@@ -1,6 +1,6 @@
 "use client";
 
-import { useQueryProvedorFindAll } from "@/query/useQueryProvedor";
+import { useQueryProvedorFindAll, useQueryProvedorUpdate } from "@/query/useQueryProvedor";
 import { Provedor } from "@/types/provedor";
 import { useEffect, useState } from "react";
 
@@ -9,6 +9,7 @@ const useProvider = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
     const queryProvedorFindAll = useQueryProvedorFindAll();
+    const queryProvedorUpdate = useQueryProvedorUpdate()
 
 
     const setNewObject = (index: number, cheched: boolean) => {
@@ -21,6 +22,7 @@ const useProvider = () => {
             return e
         })
         setIsData(newData)
+        queryProvedorUpdate.mutate(newData)
     }
 
 

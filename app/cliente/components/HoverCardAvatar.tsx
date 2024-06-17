@@ -15,6 +15,7 @@ import {
 import { MdLogout } from "react-icons/md"
 import { useContext, useEffect } from "react"
 import { AuthContext } from "@/context/auth.context"
+import useAccount from "@/hook/useAccount"
 
 const months = [
     "January", "February", "March", "April", "May", "June",
@@ -25,7 +26,7 @@ const months = [
 
 const HoverCardAvatar = () => {
 
-    const authLogin = useContext(AuthContext);
+    const account = useAccount();
 
     const formatDate = (data: string) => {
         const currentDate = new Date(data);
@@ -37,12 +38,7 @@ const HoverCardAvatar = () => {
         return formattedDate
     }
 
-    useEffect(() => {
-        if (authLogin.isLogger) {
-            console.log(authLogin.isUser)
-        }
-
-    }, [authLogin.isLogger])
+   
 
     return (
         <HoverCard>
@@ -57,33 +53,7 @@ const HoverCardAvatar = () => {
                 </Button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
-                <div className="flex justify-between space-x-4">
-
-                    <div className="space-y-1">
-                        <h4 className="text-sm font-semibold">{authLogin.isUser?.user[0].nome}</h4>
-                        <div className="text-sm flex flex-col gap-2">
-                            <div className="flex items-center pt-2">
-                                <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
-                                <span className="text-xs text-muted-foreground">
-                                    {formatDate(authLogin.isUser?.create_at!)}
-                                </span>
-                            </div>
-                            <div className="flex gap-2">
-                                <span>{authLogin.isUser?.user[0].cargo}</span>
-                                <span>/</span>
-                                <span>{authLogin.isUser?.user[0].empresa}</span>
-
-                            </div>
-                            <div className="pt-4">
-                                <Button variant="outline" className="flex gap-2" onClick={authLogin.isLogout}>
-                                    <MdLogout />
-                                    <span>Sair</span>
-                                </Button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                
             </HoverCardContent>
         </HoverCard>
     );
