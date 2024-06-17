@@ -11,8 +11,6 @@ export interface AuthType {
     isUser: CredenciasRetorno | null;
     isLogger: boolean;
     isError: object;
-    isLogout:()=>void
-    vereficSession:()=>void
 }
 
 
@@ -25,37 +23,18 @@ function AuthProvider({ children }: any) {
     const [isLogger, setIsLogger] = useState(false)
     const [isError, setIsError] = useState({ error: false, message: '' })
     const [isUser,  setIsUser] = useState<CredenciasRetorno | null >(null);
-    const router = useRouter();
+    
    
 
+
     
-    function vereficSession(){
-        const token = Cookies.get("jwt-secret")?.valueOf();
-       if(token){
-        setIsLogger(true);
-        const user: CredenciasRetorno =  VereficSession.isTokenVerefic(token);
-        setIsUser(user)
-       }else{
-        
-       }
-    }
 
-    function isLogout(){
-        Cookies.remove("jwt-secret");
-        router.replace("/u")
-    }
-
-    useEffect(() => {
-        vereficSession()
-    }, [isLogger])
 
     return (<>
         <AuthContext.Provider value={{
             isUser,
             isLogger,
             isError,
-            isLogout,
-            vereficSession
         }}>
             {children}
         </AuthContext.Provider>

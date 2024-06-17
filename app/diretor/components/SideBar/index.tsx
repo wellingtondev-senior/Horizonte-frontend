@@ -45,7 +45,7 @@ const SideBar = () => {
         <>
              <Menu.Root open={menuState.visible}>
                 <Menu.Action onOpenAtion={() => actionMenu()} menuActionIcon={RiMenu2Fill} />
-                <Menu.ButtonTooltip label="Home" onAction={() => router.push("/diretoria")} buttonIcon={IoHomeOutline} />
+                <Menu.ButtonTooltip label="Home" onAction={() => router.push("/diretor")} buttonIcon={IoHomeOutline} />
                 <Menu.ButtonTooltip label="Dashboard" onAction={() => setOpenSubItems("Dashboard")} buttonIcon={MdSpaceDashboard} />
                 <Menu.ButtonTooltip label="Documentos" onAction={() => router.push("/colaborador/documentos")} buttonIcon={HiOutlineDocumentChartBar} />
                 <Menu.ButtonTooltip label="Configurações" onAction={() => setOpenSubItems("Configurações")} buttonIcon={IoSettingsOutline} />

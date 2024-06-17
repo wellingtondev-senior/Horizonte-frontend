@@ -92,3 +92,9 @@
 }
 
 }
+@layer utilities {
+  .border-image-custom {
+    border-image: linear-gradient(45deg, #007cf0, #e100ff) 1;
+    
+  }
+}

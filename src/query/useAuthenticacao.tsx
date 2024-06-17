@@ -46,7 +46,7 @@ export const useAuthenticacao = () => {
         case "DIRETOR":
         case "MASTER":
           toastMessage = "Autenticado com sucesso Diretor";
-          redirectPath = "/diretoria";
+          redirectPath = "/diretor";
           break;
         default:
           throw new Error("Role not recognized");
@@ -71,7 +71,7 @@ export const useAuthenticacao = () => {
         </div>
       );
       router.replace(redirectPath);
-      authContext.vereficSession()
+     
     },
     onError: async (err) => {
       console.error("Error", err);

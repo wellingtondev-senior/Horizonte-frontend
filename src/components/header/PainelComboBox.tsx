@@ -19,6 +19,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/auth.context";
 import { useRouter } from "next/navigation";
 import { Role } from "@/enums/role.enum";
+import useAccount from "@/hook/useAccount";
 
 interface ICombo {
   CLIENTE: { value: string; label: string }[],
@@ -36,7 +37,7 @@ const COMBO: ICombo = {
   DIRETOR: [
     { value: "cliente", label: "Gestor Cliente" },
     { value: "colaborador", label: "Gestor Colaborador" },
-    { value: "diretoria", label: "Gestor Diretoria" },
+    { value: "diretor", label: "Gestor Diretoria" },
     { value: "master", label: "Gestor Master" },
   ],
   MASTER: [{ value: "master", label: "Gestor Master" }],
@@ -45,43 +46,21 @@ const COMBO: ICombo = {
 export function PainelComboBox() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const authContext = useContext(AuthContext);
-  const userRole = authContext.isUser?.role || null;
+  const account = useAccount();;
   const [value, setValue] = useState<string>("");
   const [isOption, setIsOption] = useState<{ value: string; label: string }[]>([]);
 
 
   
-    function getAllPaths(url: string): string[] {
-      // Cria uma instância da classe URL a partir da string fornecida
-      const parsedUrl = new URL(url);
-  
-      // Obtém o pathname, que contém a parte do caminho da URL
-      const pathname = parsedUrl.pathname;
-  
-      // Divide o pathname em partes, separando pelos "/"
-      const paths = pathname.split('/').filter(part => part.length > 0);
-  
-      return paths;
-    }
-  
+   
   
 
   useEffect(() => {
-    const url = window.location.href;
-      const paths = getAllPaths(url);
-    
-    if (userRole) {
-      const role = paths[0]?.toUpperCase() as Role;
-      if (role && COMBO[role]) {
-        setValue(paths[0]);
-        setIsOption(COMBO[role]);
-      } else {
-        setValue(userRole.toLowerCase());
-        setIsOption(COMBO[userRole] || []);
-      }
+    if (account.isUser?.role) {
+        setValue(account.isUser?.role.toLocaleLowerCase());
+        setIsOption(COMBO[account.isUser?.role]);
     }
-  }, [userRole]);
+  }, [account.isUser?.role]);
 
   return (
     <div className="max-sm:hidden">
@@ -106,8 +85,8 @@ export function PainelComboBox() {
               <CommandEmpty>Nenhum gestor encontrado.</CommandEmpty>
               <CommandGroup>
                 {
-                  userRole ?
-                  COMBO[userRole].map((option) => (
+                  account.isUser?.role ?
+                  COMBO[account.isUser?.role].map((option) => (
                     <CommandItem
                       key={option.value}
                       value={option.value}

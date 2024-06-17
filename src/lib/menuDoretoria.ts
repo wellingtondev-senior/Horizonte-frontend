@@ -21,7 +21,7 @@ export const menuDiretoria = (item:string)=>{
     data: [
         {
             label: "Projeto",
-            page: "/diretoria/projetos",
+            page: "/diretor/projetos",
             icon:VscGraph
         },   
         
@@ -33,7 +33,7 @@ export const menuDiretoria = (item:string)=>{
     data: [
         {
             label: "Provedores Storage",
-            page: "/diretoria/storage",
+            page: "/diretor/storage",
             icon:GrStorage
         },   
  
