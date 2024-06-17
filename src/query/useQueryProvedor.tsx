@@ -18,6 +18,12 @@ async function create({ nome, provedor, userId, limiteArmazenamento }: ProvedorR
   return data
 }
 
+async function update({ nome, provedor, userId, limiteArmazenamento }: ProvedorRequetType) {
+  const { data } = await api.post<ProvedorResponseType>("/provedores/create", {
+    nome, provedor, userId, limiteArmazenamento
+  });
+  return data
+}
 async function queryProvedorFindAll() {
     const { data } = await api.get<ProvedorResponseType>("/provedores/all");
     return data
