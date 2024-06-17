@@ -20,7 +20,6 @@ import useAccount from "@/hook/useAccount"
 export function UserNav() {
   const account = useAccount();
 
-  console.log(account)
 
   return (
     <DropdownMenu>
