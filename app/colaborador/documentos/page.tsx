@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Dashboard from "../components/layout/Dashboard";
 import { EstadoProjeto } from "@/enums/satusProjeto.enum";
 import { VscCloudUpload } from "react-icons/vsc";
+import { NewDocumentoDialog } from "../components/NewDocumentoDialog";
 
 
 interface IProjetos {
@@ -59,15 +60,11 @@ const StatusPage = () => {
                         <span className="text-[18px] text-gray-700 font-bold">Lista de todos os Documentos</span>
                     </div>
                     <div>
-                        
-                        <Button variant="outline" className="p-0 gap-2 px-10">
-                            <VscCloudUpload className="w-6 h-6 fill-gray-700"/>
-                            <span>Novo Documento</span>
-                            </Button>
+                        <NewDocumentoDialog />
                     </div>
                 </div>
-                
-               
+
+
 
             </article>
         </Dashboard>
