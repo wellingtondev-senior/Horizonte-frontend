@@ -8,7 +8,7 @@ const upload: AxiosInstance = axios.create({
    
 });
 
-upload.interceptors.request.use(
+upload.interceptors.request.use(  
     async (config: InternalAxiosRequestConfig) => {
         const token = Cookies.get("jwt-secret")?.valueOf();
         if(token){
