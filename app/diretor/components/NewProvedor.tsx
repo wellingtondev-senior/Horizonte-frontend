@@ -21,6 +21,7 @@ import { useQueryProvedorCreate } from "@/query/useQueryProvedor"
 import { ProvedorEnum } from "@/enums/provedor.enum"
 import { tv } from "tailwind-variants"
 import { cn } from "@/lib/utils"
+import { ProvedorRequetType } from "@/types/provedor"
 
 
 
@@ -45,10 +46,21 @@ export function NewProvedor({ }) {
 
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
     const queryProvedorCreate = useQueryProvedorCreate();
-    const [isProvedor, setIsProvedor] = useState<ProvedorEnum>(ProvedorEnum.GDRIVER)
+    const [isProvedor, setIsProvedor] = useState<ProvedorRequetType>({
+        provedor: ProvedorEnum.FIREBASE,
+        nome: "Firebase",
+        userId: 1,
+        limiteArmazenamento: "5GB"
+    })
 
     const controlDrawer = () => {
         setIsDrawerOpen(true)
+    }
+
+    const handleCreate = () => {
+        setIsDrawerOpen(false)
+        queryProvedorCreate.mutate(isProvedor)
+        
     }
 
     return (
@@ -75,24 +87,39 @@ export function NewProvedor({ }) {
 
                             <Button
                                 onClick={() =>
-                                    setIsProvedor(ProvedorEnum.GDRIVER)}
+                                    setIsProvedor({
+                                        provedor: ProvedorEnum.GDRIVER,
+                                        nome: "Google Driver",
+                                        userId: 1,
+                                        limiteArmazenamento: "5GB"
+                                    })}
                                 variant="outline"
-                                className={cn(provedorSelected({ selected: isProvedor == ProvedorEnum.GDRIVER }))}>
+                                className={cn(provedorSelected({ selected: isProvedor.provedor == ProvedorEnum.GDRIVER }))}>
                                 <FaGoogleDrive />
                                 <span>GDriver</span>
                             </Button>
                             <Button
                                 onClick={() =>
-                                    setIsProvedor(ProvedorEnum.DROPBOX)}
+                                    setIsProvedor({
+                                        provedor: ProvedorEnum.DROPBOX,
+                                        nome: "Dropbox",
+                                        userId: 1,
+                                        limiteArmazenamento: "10GB"
+                                    })}
                                 variant="outline"
-                                className={cn(provedorSelected({ selected: isProvedor == ProvedorEnum.DROPBOX }))}>
+                                className={cn(provedorSelected({ selected: isProvedor.provedor == ProvedorEnum.DROPBOX }))}>
                                 <FaDropbox />
                                 <span>Dropbox</span>
                             </Button>
                             <Button
-                                onClick={() => setIsProvedor(ProvedorEnum.FIREBASE)}
+                                onClick={() => setIsProvedor({
+                                    provedor: ProvedorEnum.FIREBASE,
+                                    nome: "Firebase",
+                                    userId: 1,
+                                    limiteArmazenamento: "5GB"
+                                })}
                                 variant="outline"
-                                className={cn(provedorSelected({ selected: isProvedor == ProvedorEnum.FIREBASE }))}>
+                                className={cn(provedorSelected({ selected: isProvedor.provedor == ProvedorEnum.FIREBASE }))}>
                                 <IoLogoFirebase />
                                 <span>Firebase</span>
                             </Button>
@@ -101,7 +128,7 @@ export function NewProvedor({ }) {
 
                     </div>
                     <DrawerFooter>
-                        <Button onClick={() => setIsDrawerOpen(false)}>Enviar</Button>
+                        <Button onClick={handleCreate}>Enviar</Button>
                         <DrawerClose asChild>
                             <Button variant="outline">Cancelar</Button>
                         </DrawerClose>

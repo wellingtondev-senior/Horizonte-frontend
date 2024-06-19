@@ -1,14 +1,14 @@
-"use client"
-import { Button } from "@/components/ui/button";
-import { CookiesDB } from "@/lib/cookies";
-import api from "@/services/api";
-import { CredenciasRequestType, CredenciasResponseType } from "@/types/credencias";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+"use client";
+
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner"
+import { toast } from "sonner";
 import ToastComponent from "@/components/Toast";
-import { Provedor, ProvedorRequetType, ProvedorResponseType } from "@/types/provedor";
-import { AxiosRequestConfig } from "axios";
+import apiUpload from "@/services/upload";
+import FormData from 'form-data';
+import { AxiosProgressEvent } from "axios";
+
+
 
 type ProgressEventType = {
     loaded: number;
@@ -16,51 +16,47 @@ type ProgressEventType = {
 };
 
 
-async function create({ files }: any) {
-    const { data } = await api.post("/documentos/create", {
+
+
+async function create(files: File[]) {
+    const formData = new FormData();
+
+    // Adicionar cada arquivo ao FormData
+    files.forEach((file) => {
+        formData.append('files', file);
+    });
+    const { data } = await apiUpload.post("/documentos/create" , formData, {
+        
         headers: {
             'Content-Type': 'multipart/form-data',
-        },
-        // Configuração do progresso do upload
-        onUploadProgress: (progressEvent: ProgressEventType) => {
-            const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        },  
+        onUploadProgress: (progressEvent: AxiosProgressEvent) => {
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
             console.log('Progresso:', percentCompleted);
             // Aqui você pode atualizar o estado de progresso, se necessário
         },
     });
     return data
-}
+  }
+  
 
-
-async function queryProvedorFindAll() {
-    const { data } = await api.get<ProvedorResponseType>("/provedores/all");
-    return data
-}
-
-
-export const useQueryProvedorFindAll = () => {
-    return useQuery({
-        queryKey: ['queryProvedorFindAll'],
-        queryFn: queryProvedorFindAll,
-        refetchOnWindowFocus: false,
-        staleTime: 10 * 60 * 1000,
-        refetchInterval: 10 * 60 * 1000,
-        gcTime: 10 * 60 * 1000,
-
-    });
-};
-
-export const useQueryProvedorCreate = () => {
+export const useQueryDocumentoCreate = () => {
     const queryClient = useQueryClient();
     const router = useRouter();
+
     return useMutation({
         mutationFn: create,
-        onSuccess: async (data: ProvedorResponseType) => {
-            toast(<ToastComponent error={false} title="Novo Provedor" description="Cadastro com sucesso" />)
+        onSuccess: async (data: any) => {
+            console.log("sucesso")
+            toast(<ToastComponent error={false} title="Novo Documento" description="Cadastro com sucesso" />);
+            // Optionally invalidate and refetch relevant queries
+            await queryClient.invalidateQueries({
+                queryKey: ['queryDocumentoFindAll']
+            });
         },
-        onError: async (err) => {
-            return toast(<ToastComponent error={true} title="Erro Provedor" description="Erro ao criar novo Provedor" />)
+        onError: async (err: any) => {
+            console.log(err)
+            toast(<ToastComponent error={true} title="Erro Documento" description="Erro ao criar novo Documento" />);
         }
     });
-}
-
+};
