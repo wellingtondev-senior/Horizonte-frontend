@@ -39,8 +39,12 @@ export function NewDocumentoDialog() {
     const { getRootProps, getInputProps } = useDropzone({
         onDrop,
         accept: {
-            "image/jpeg": [],
+            'image/*': ['.jpeg', '.png'],
             "application/pdf": [],
+            'application/msword':[],
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document':[],
+            'application/vnd.ms-excel':[],
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':[],
         },
         multiple: true 
     });
@@ -48,6 +52,7 @@ export function NewDocumentoDialog() {
         console.log("button Upload")
         console.log(selectedFiles.length)
         if (selectedFiles.length > 0) {
+           
             queryDocumentoCreate.mutate(selectedFiles);
         }
     };
