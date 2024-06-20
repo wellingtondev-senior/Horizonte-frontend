@@ -4,6 +4,7 @@ import { tv, VariantProps } from "tailwind-variants";
 import HeaderComponent from "@/components/header";
 import SideBar from "../SideBar";
 import { BreadcrumbWithCustomSeparator } from "@/components/Badcrumb";
+import { Toaster } from "sonner";
 
 
 interface DashboardProps extends VariantProps<typeof DashboardChildren> {
@@ -34,6 +35,7 @@ const Dashboard = ({ children }: DashboardProps) => {
                 <BreadcrumbWithCustomSeparator />
                 {children}
             </article>
+            <Toaster/>
         </section>
     );
 }

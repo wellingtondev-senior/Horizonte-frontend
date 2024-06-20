@@ -15,12 +15,15 @@ import { VscCloudUpload } from 'react-icons/vsc';
 import { GoUpload } from 'react-icons/go';
 import { cn } from '@/lib/utils';
 import { useQueryDocumentoCreate } from '@/query/useQueryDocumentoUpload';
+import { ProgressBar } from '@/components/ProgessBar';
+import useUploadProgressStore, { UseUploadProgressStoreProps } from '@/store/useUploadProgress';
 
 export function NewDocumentoDialog() {
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [totalSize, setTotalSize] = useState<number>(0);
     const [isInd, setIsInd] = useState<string>('text-gray-800')
     const queryDocumentoCreate = useQueryDocumentoCreate()
+    const uploadProgressStore= useUploadProgressStore((state: UseUploadProgressStoreProps)=>state);
 
 
 
@@ -86,7 +89,9 @@ export function NewDocumentoDialog() {
             <DialogContent className="sm:max-w-[425px] md:max-w-[500px] lg:w-[700px]">
                 <DialogHeader>
                     <DialogTitle>Novo Documento</DialogTitle>
-                    <DialogDescription>Os documentos serão enviados para seu provedor Firebase.</DialogDescription>
+                    <DialogDescription>
+                        Documentos aceitos <strong>PDF, XLS, JPG, PNG, DOC </strong> e o total de upload aceito no máximo de <strong>1MB</strong>.
+                    </DialogDescription>
                 </DialogHeader>
                 <div className="flex flex-col px-4 sm:px-2">
                     {/* Renderização condicional baseada em selectedFiles */}
@@ -106,6 +111,10 @@ export function NewDocumentoDialog() {
                             </div>
                         </>
                     )}
+                </div>
+                <div className='w-full flex items-center justify-between  gap-2'>
+                <ProgressBar progress={uploadProgressStore.progress}/>
+                <span className='text-[12px] font-bold'>0%</span>
                 </div>
                 <DialogFooter>
                     <label className="flex items-center justify-center gap-2 px-4 h-[38px] rounded-md border hover:bg-gray-100 duration-500">

@@ -1,62 +1,74 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import ToastComponent from "@/components/Toast";
 import apiUpload from "@/services/upload";
 import FormData from 'form-data';
 import { AxiosProgressEvent } from "axios";
+import useUploadProgressStore from "@/store/useUploadProgress";
 
-
-
+// Type for the progress event
 type ProgressEventType = {
     loaded: number;
     total: number;
 };
 
+// Function to handle the file upload
+async function create(files: File[], setProgress: (progress: number) => void) {
+    // Access the upload progress store
+   
 
-
-
-async function create(files: File[]) {
+    // Create a new FormData object
     const formData = new FormData();
-
-    // Adicionar cada arquivo ao FormData
+    // Append each file to the FormData object
     files.forEach((file) => {
         formData.append('files', file);
     });
-    const { data } = await apiUpload.post("/documentos/create" , formData, {
-        
+
+    // Make the API request to upload the files
+    const { data } = await apiUpload.post("/documentos/create", formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
-        },  
+        },
+        // Track the upload progress
         onUploadProgress: (progressEvent: AxiosProgressEvent) => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
-            console.log('Progresso:', percentCompleted);
-            // Aqui você pode atualizar o estado de progresso, se necessário
+            setProgress(percentCompleted); // Update the progress in the store
         },
     });
-    return data
-  }
-  
 
+    return data; // Return the response data
+}
+
+// Hook for the create document mutation
 export const useQueryDocumentoCreate = () => {
     const queryClient = useQueryClient();
-    const router = useRouter();
-
+    const { setProgress } = useUploadProgressStore((state) => state);
     return useMutation({
-        mutationFn: create,
+        mutationFn: (files: File[]) => create(files, setProgress),
         onSuccess: async (data: any) => {
-            console.log("sucesso")
-            toast(<ToastComponent error={false} title="Novo Documento" description="Cadastro com sucesso" />);
-            // Optionally invalidate and refetch relevant queries
-            await queryClient.invalidateQueries({
-                queryKey: ['queryDocumentoFindAll']
-            });
+            // Display success toast
+            toast(
+                <ToastComponent
+                    error={false}
+                    title="Novo Documento"
+                    description="Cadastro com sucesso"
+                />
+            );
+            // Invalidate and refetch relevant queries
+            await queryClient.invalidateQueries({ queryKey: ['queryDocumentoFindAll'] });
         },
         onError: async (err: any) => {
-            console.log(err)
-            toast(<ToastComponent error={true} title="Erro Documento" description="Erro ao criar novo Documento" />);
-        }
+            // Display error toast
+            console.log(err.message)
+            toast(
+                <ToastComponent
+                    error={true}
+                    title="Erro Documento"
+                    description="Erro ao criar novo Documento"
+                />
+            );
+        },
     });
 };
