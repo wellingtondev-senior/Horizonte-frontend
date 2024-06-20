@@ -25,8 +25,6 @@ export function NewDocumentoDialog() {
     const queryDocumentoCreate = useQueryDocumentoCreate()
     const uploadProgressStore= useUploadProgressStore((state: UseUploadProgressStoreProps)=>state);
 
-
-
     const onDrop = (acceptedFiles: File[]) => {
         console.log(acceptedFiles)
         setSelectedFiles(acceptedFiles);
@@ -41,16 +39,11 @@ export function NewDocumentoDialog() {
         accept: {
             'image/*': ['.jpeg', '.png'],
             "application/*": [".pdf", ".doc", ".docx", ".xls", ".csv", ".txt"],
-        
-          
         },
         multiple: true 
     });
     const enviarFiles = async () => {
-        console.log("button Upload")
-        console.log(selectedFiles.length)
         if (selectedFiles.length > 0) {
-           
             queryDocumentoCreate.mutate(selectedFiles);
         }
     };
