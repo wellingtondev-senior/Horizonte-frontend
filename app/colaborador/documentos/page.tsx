@@ -18,6 +18,7 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
+import { TableDocumentos } from "../components/TableDocumentos";
 
 interface IProjetos {
     projeto: string
@@ -85,18 +86,7 @@ const StatusPage = () => {
                     </TabsList>
                     <TabsContent value="todos">
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Todos</CardTitle>
-                                <CardDescription>
-                                    Todos.
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-2">
-                               
-                            </CardContent>
-                            <CardFooter>
-                                <Button></Button>
-                            </CardFooter>
+                            <TableDocumentos />
                         </Card>
                     </TabsContent>
                     <TabsContent value="firebase">
@@ -104,11 +94,11 @@ const StatusPage = () => {
                             <CardHeader>
                                 <CardTitle>Firebase</CardTitle>
                                 <CardDescription>
-                                   Firebase
+                                    Firebase
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                
+
                             </CardContent>
                             <CardFooter>
                                 <Button></Button>
@@ -120,11 +110,11 @@ const StatusPage = () => {
                             <CardHeader>
                                 <CardTitle>Google Driver</CardTitle>
                                 <CardDescription>
-                                   Google Driver
+                                    Google Driver
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                
+
                             </CardContent>
                             <CardFooter>
                                 <Button></Button>
