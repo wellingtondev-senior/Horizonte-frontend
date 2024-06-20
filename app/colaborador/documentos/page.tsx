@@ -41,17 +41,17 @@ const DocumentoPage = () => {
                     </TabsList>
                     <TabsContent value="todos">
                         <Card>
-                            <TableDocumentos filter="todos"  data={documentosFindAll.data}/>
+                            <TableDocumentos filter="todos"  response={documentosFindAll}/>
                         </Card>
                     </TabsContent>
                     <TabsContent value="firebase">
                         <Card>
-                            <TableDocumentos filter="firebase" data={documentosFindAll.data}/>
+                            <TableDocumentos filter="firebase" response={documentosFindAll}/>
                         </Card>
                     </TabsContent>
                     <TabsContent value="gdriver">
                         <Card>
-                            <TableDocumentos filter="gdriver" data={documentosFindAll.data}/>
+                            <TableDocumentos filter="gdriver" response={documentosFindAll}/>
                         </Card>
                     </TabsContent>
                 </Tabs>
