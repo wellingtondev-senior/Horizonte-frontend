@@ -40,11 +40,9 @@ export function NewDocumentoDialog() {
         onDrop,
         accept: {
             'image/*': ['.jpeg', '.png'],
-            "application/pdf": [],
-            'application/msword':[],
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document':[],
-            'application/vnd.ms-excel':[],
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':[],
+            "application/*": [".pdf", ".doc", ".docx", ".xls", ".csv", ".txt"],
+        
+          
         },
         multiple: true 
     });
