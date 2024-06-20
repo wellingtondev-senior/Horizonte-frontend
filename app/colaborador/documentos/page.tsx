@@ -86,69 +86,48 @@ const StatusPage = () => {
                     <TabsContent value="todos">
                         <Card>
                             <CardHeader>
-                                <CardTitle>Account</CardTitle>
+                                <CardTitle>Todos</CardTitle>
                                 <CardDescription>
-                                    Make changes to your account here. Click save when you're done.
+                                    Todos.
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <Label htmlFor="name">Name</Label>
-                                    <Input id="name" defaultValue="Pedro Duarte" />
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor="username">Username</Label>
-                                    <Input id="username" defaultValue="@peduarte" />
-                                </div>
+                               
                             </CardContent>
                             <CardFooter>
-                                <Button>Save changes</Button>
+                                <Button></Button>
                             </CardFooter>
                         </Card>
                     </TabsContent>
                     <TabsContent value="firebase">
                         <Card>
                             <CardHeader>
-                                <CardTitle>Password</CardTitle>
+                                <CardTitle>Firebase</CardTitle>
                                 <CardDescription>
-                                    Change your password here. After saving, you'll be logged out.
+                                   Firebase
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <Label htmlFor="current">Current password</Label>
-                                    <Input id="current" type="password" />
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor="new">New password</Label>
-                                    <Input id="new" type="password" />
-                                </div>
+                                
                             </CardContent>
                             <CardFooter>
-                                <Button>Save password</Button>
+                                <Button></Button>
                             </CardFooter>
                         </Card>
                     </TabsContent>
                     <TabsContent value="gdriver">
                         <Card>
                             <CardHeader>
-                                <CardTitle>Password</CardTitle>
+                                <CardTitle>Google Driver</CardTitle>
                                 <CardDescription>
-                                    Change your password here. After saving, you'll be logged out.
+                                   Google Driver
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-2">
-                                <div className="space-y-1">
-                                    <Label htmlFor="current">Current password</Label>
-                                    <Input id="current" type="password" />
-                                </div>
-                                <div className="space-y-1">
-                                    <Label htmlFor="new">New password</Label>
-                                    <Input id="new" type="password" />
-                                </div>
+                                
                             </CardContent>
                             <CardFooter>
-                                <Button>Save password</Button>
+                                <Button></Button>
                             </CardFooter>
                         </Card>
                     </TabsContent>

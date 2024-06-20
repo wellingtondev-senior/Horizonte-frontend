@@ -75,6 +75,7 @@ export function NewDocumentoDialog() {
         if (!open) {
             setSelectedFiles([])
             setTotalSize(0)
+            uploadProgressStore.setProgress(0)
         }
     }
 
@@ -114,7 +115,7 @@ export function NewDocumentoDialog() {
                 </div>
                 <div className='w-full flex items-center justify-between  gap-2'>
                 <ProgressBar progress={uploadProgressStore.progress}/>
-                <span className='text-[12px] font-bold'>0%</span>
+                <span className='text-[12px] font-bold'>{uploadProgressStore.progress}%</span>
                 </div>
                 <DialogFooter>
                     <label className="flex items-center justify-center gap-2 px-4 h-[38px] rounded-md border hover:bg-gray-100 duration-500">
