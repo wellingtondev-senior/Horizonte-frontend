@@ -10,63 +10,48 @@ import {
 import { Switch } from "@/components/ui/switch"
 import useProvider from "@/hook/useProvider";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useDocumentosFindAll } from "@/query/useQueryDocumentoUpload";
+import { DocumentoResponse } from "@/types/dosumentos";
 
-
-const invoices = [
-    {
-        invoice: "INV001",
-        paymentStatus: "Paid",
-        totalAmount: "$250.00",
-        paymentMethod: "Credit Card",
-    },
-]
-
-export function TableDocumentos() {
-    
-   
-    const provedor = useProvider()
-
-
-
-
+interface TableDocumentosProps {
+    filter: string,
+    data: DocumentoResponse | undefined
+}
+export function TableDocumentos({ filter, data }: TableDocumentosProps) {
 
 
     return (
         <Table>
             <TableHeader>
                 <TableRow>
-                <TableHead className=""><Checkbox id="terms" /></TableHead>
-                    <TableHead className="">Nome do Provedor</TableHead>
+                    <TableHead className=""><Checkbox id="terms" /></TableHead>
+                    <TableHead className="">Nome</TableHead>
                     <TableHead>Provedor</TableHead>
-                    <TableHead>Limite de Uso</TableHead>
-                    <TableHead>Tamanho em Uso</TableHead>
-                    <TableHead className="text-right">Ativar</TableHead>
+                    <TableHead>Tipo</TableHead>
+                    <TableHead>Tamanho</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {
-                    provedor.isData.length === 0?
-                    <TableRow >
-                    <TableCell rowSpan={5} className="font-medium h-[40px]">Sem valor</TableCell>
-                  
-                 
-                </TableRow> :
-                provedor.isData?.map((provedorElemento, i)=>(
-                    <TableRow key={provedorElemento.provedor} className="h-[40px] py-2">
-                        <TableCell className=""><Checkbox id="terms" /></TableCell>
-                        <TableCell className="font-medium ">{provedorElemento.nome}</TableCell>
-                        <TableCell className="">{provedorElemento.provedor}</TableCell>
-                        <TableCell className="">{provedorElemento.limiteArmazenamento}</TableCell>
-                        <TableCell className="">0.0</TableCell>
-                        <TableCell className="text-right ">
-                            <Switch id={`provedor-${provedorElemento}`} checked={provedorElemento.status} onCheckedChange={(checked:boolean)=>provedor.setNewObject(i, checked)} />
-                        </TableCell>
-                    </TableRow>
-                ))
+                    data?.message.length == 0 ?
+                        <TableRow >
+                            <TableCell rowSpan={5} className="font-medium h-[40px]">Sem valor</TableCell>
+
+
+                        </TableRow> :
+                        data?.message.map((documento, i) => (
+                            <TableRow key={documento.id} className="h-[40px] py-2">
+                                <TableCell className=""><Checkbox id="terms" /></TableCell>
+                                <TableCell className="font-medium">{documento.nome}</TableCell>
+                                <TableCell className="font-medium ">{documento.provedor.nome}</TableCell>
+                                <TableCell className="">{documento.tipo}</TableCell>
+                                <TableCell className="">{documento.tamanho}</TableCell>
+                            </TableRow>
+                        ))
                 }
-                
+
             </TableBody>
-            
+
         </Table>
     )
 }

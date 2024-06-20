@@ -1,17 +1,8 @@
-import { Button } from "@/components/ui/button";
+"use client"
 import Dashboard from "../components/layout/Dashboard";
 import { EstadoProjeto } from "@/enums/satusProjeto.enum";
 import { NewDocumentoDialog } from "../components/NewDocumentoDialog";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Card } from "@/components/ui/card"
 import {
     Tabs,
     TabsContent,
@@ -19,52 +10,16 @@ import {
     TabsTrigger,
 } from "@/components/ui/tabs"
 import { TableDocumentos } from "../components/TableDocumentos";
-
-interface IProjetos {
-    projeto: string
-    status: EstadoProjeto
-    inicioData: string
-    estimativaTermino: string
-    setor: string
-    responsavel: string
-}
-
-const PROJETOS: IProjetos[] = [
-    {
-        projeto: "Projeto de Teste de Desenvolvimento",
-        status: EstadoProjeto.ANDAMENTO,
-        inicioData: "29/05/24",
-        estimativaTermino: "29/05/24",
-        setor: "Setor",
-        responsavel: "Wellington Ramos"
-
-    },
-    {
-        projeto: "Projeto de Teste de Desenvolvimento",
-        status: EstadoProjeto.ATRIBUIDO,
-        inicioData: "29/05/24",
-        estimativaTermino: "29/05/24",
-        setor: "Setor",
-        responsavel: "Wellington Ramos"
-
-    }
-]
+import { useDocumentosFindAll } from "@/query/useQueryDocumentoUpload";
 
 
 
 
-const StatusPage = () => {
+const DocumentoPage = () => {
+    const documentosFindAll = useDocumentosFindAll()
+    console.log(documentosFindAll.data)
 
-    const statusNome = (status: EstadoProjeto) => {
-        switch (status) {
-            case "ANDAMENTO":
-                return "Projeto em Andamento"
-            case "ATRIBUIDO":
-                return "Projeto Atribuido"
-            default:
-                return "Projeto Status indefinido"
-        }
-    }
+ 
     return (
         <Dashboard>
             <h2 className="text-3xl font-bold tracking-tight">Gerenciador de Documento</h2>
@@ -78,7 +33,7 @@ const StatusPage = () => {
                         <NewDocumentoDialog />
                     </div>
                 </div>
-                <Tabs defaultValue="account" className="w-full">
+                <Tabs defaultValue="todos" className="w-full">
                     <TabsList className="grid w-[450px] grid-cols-3">
                         <TabsTrigger value="todos">Todos</TabsTrigger>
                         <TabsTrigger value="firebase">Firebase</TabsTrigger>
@@ -86,39 +41,17 @@ const StatusPage = () => {
                     </TabsList>
                     <TabsContent value="todos">
                         <Card>
-                            <TableDocumentos />
+                            <TableDocumentos filter="todos"  data={documentosFindAll.data}/>
                         </Card>
                     </TabsContent>
                     <TabsContent value="firebase">
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Firebase</CardTitle>
-                                <CardDescription>
-                                    Firebase
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-2">
-
-                            </CardContent>
-                            <CardFooter>
-                                <Button></Button>
-                            </CardFooter>
+                            <TableDocumentos filter="firebase" data={documentosFindAll.data}/>
                         </Card>
                     </TabsContent>
                     <TabsContent value="gdriver">
                         <Card>
-                            <CardHeader>
-                                <CardTitle>Google Driver</CardTitle>
-                                <CardDescription>
-                                    Google Driver
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-2">
-
-                            </CardContent>
-                            <CardFooter>
-                                <Button></Button>
-                            </CardFooter>
+                            <TableDocumentos filter="gdriver" data={documentosFindAll.data}/>
                         </Card>
                     </TabsContent>
                 </Tabs>
@@ -129,4 +62,4 @@ const StatusPage = () => {
     );
 }
 
-export default StatusPage;
+export default DocumentoPage;

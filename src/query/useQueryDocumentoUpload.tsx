@@ -1,12 +1,14 @@
 "use client";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import ToastComponent from "@/components/Toast";
 import apiUpload from "@/services/upload";
 import FormData from 'form-data';
 import { AxiosProgressEvent } from "axios";
 import useUploadProgressStore from "@/store/useUploadProgress";
+import upload from "@/services/upload";
+import { DocumentoResponse } from "@/types/dosumentos";
 
 // Type for the progress event
 type ProgressEventType = {
@@ -72,3 +74,15 @@ export const useQueryDocumentoCreate = () => {
         },
     });
 };
+async function documentosFindAll() {
+    const { data } = await apiUpload.get<DocumentoResponse>("/documentos");
+    return data
+  }
+  
+export const useDocumentosFindAll = () => {
+    return useQuery({
+      queryKey: ['queryDocumentoFindAll'],
+      queryFn: documentosFindAll,
+
+    });
+  };
