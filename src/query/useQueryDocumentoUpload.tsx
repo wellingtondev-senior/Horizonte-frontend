@@ -7,8 +7,7 @@ import apiUpload from "@/services/upload";
 import FormData from 'form-data';
 import { AxiosProgressEvent } from "axios";
 import useUploadProgressStore from "@/store/useUploadProgress";
-import upload from "@/services/upload";
-import { DocumentoResponse } from "@/types/dosumentos";
+import { DocumentoResponse } from "@/types/documentos";
 
 // Type for the progress event
 type ProgressEventType = {
@@ -16,24 +15,17 @@ type ProgressEventType = {
     total: number;
 };
 
-// Function to handle the file upload
+//UPLOAD DE NOVOS DOCUMENTOS (PDF, TEXT, JPG)
 async function create(files: File[], setProgress: (progress: number) => void) {
-    // Access the upload progress store
-   
-
-    // Create a new FormData object
     const formData = new FormData();
-    // Append each file to the FormData object
     files.forEach((file) => {
         formData.append('files', file);
     });
 
-    // Make the API request to upload the files
     const { data } = await apiUpload.post("/documentos/create", formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
-        // Track the upload progress
         onUploadProgress: (progressEvent: AxiosProgressEvent) => {
             const percentCompleted = Math.round((progressEvent.loaded * 100) / (progressEvent.total || 1));
             setProgress(percentCompleted); // Update the progress in the store
@@ -43,10 +35,10 @@ async function create(files: File[], setProgress: (progress: number) => void) {
     return data; // Return the response data
 }
 
-// Hook for the create document mutation
 export const useQueryDocumentoCreate = () => {
     const queryClient = useQueryClient();
     const { setProgress } = useUploadProgressStore((state) => state);
+
     return useMutation({
         mutationFn: (files: File[]) => create(files, setProgress),
         onSuccess: async (data: any) => {
@@ -63,7 +55,7 @@ export const useQueryDocumentoCreate = () => {
         },
         onError: async (err: any) => {
             // Display error toast
-            console.log(err.message)
+            console.log(err.message);
             toast(
                 <ToastComponent
                     error={true}
@@ -74,15 +66,52 @@ export const useQueryDocumentoCreate = () => {
         },
     });
 };
+
+//LISTA TODOS OS DOCUMENTOS QUE FORAM FEITOS UPLOAD (PDF, TEXT, JPG)
 async function documentosFindAll() {
     const { data } = await apiUpload.get<DocumentoResponse>("/documentos");
-    return data
-  }
-  
+    return data;
+}
+
 export const useDocumentosFindAll = () => {
     return useQuery({
-      queryKey: ['queryDocumentoFindAll'],
-      queryFn: documentosFindAll,
-
+        queryKey: ['queryDocumentoFindAll'],
+        queryFn: documentosFindAll,
     });
-  };
+};
+
+//DELETA O DOCUMENTO PASSANDO LISTA DE NOMES DE DOCUMENTOS E LISTA DE IDs
+async function documentosDelete({nomeDocumento, ids}:{nomeDocumento: string[], ids: number[]}) {
+    const { data } = await apiUpload.delete("/documentos/delete", {
+        data: { nomeDocumento, ids }
+    });
+    return data;
+}
+
+export const useDocumentosDelete = () => {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: documentosDelete,
+        onSuccess: async (data: any) => {
+            toast(
+                <ToastComponent
+                    error={false}
+                    title="Documento Deletado"
+                    description="Documento deletado com sucesso"
+                />
+            );
+            await queryClient.invalidateQueries({ queryKey: ['queryDocumentoFindAll'] });
+        },
+        onError: async (err: any) => {
+            console.log(err.message);
+            toast(
+                <ToastComponent
+                    error={true}
+                    title="Erro Deleção"
+                    description="Erro ao deletar Documento"
+                />
+            );
+        },
+    });
+};
