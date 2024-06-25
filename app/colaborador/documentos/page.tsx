@@ -11,14 +11,14 @@ import {
 } from "@/components/ui/tabs"
 import { TableDocumentos } from "../components/TableDocumentos";
 import { useDocumentosFindAll } from "@/query/useQueryDocumentoUpload";
+import { useState } from "react";
 
 
 
 
 const DocumentoPage = () => {
     const documentosFindAll = useDocumentosFindAll()
-    console.log(documentosFindAll.data)
-
+    
  
     return (
         <Dashboard>

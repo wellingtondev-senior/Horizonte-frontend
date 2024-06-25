@@ -10,6 +10,7 @@ const nextConfig = {
     images: {
         domains: []
     },
+    transpilePackages: ['@mui/x-charts'] 
  
 }
 

@@ -12,8 +12,8 @@ const gestorAcesso = (role: Role, path: string): boolean => {
   const pathArray = path.split("/");
 
   const accessMap: AccessMap = {
-    DIRETOR: ['/diretoria', '/colaborador', '/cliente'],
-    MASTER: [`/diretoria`],
+    DIRETOR: ['/diretor', '/colaborador', '/cliente'],
+    MASTER: [`/diretor`],
     COLABORADOR: [`/colaborador`, `/cliente`],
     CLIENTE: [`/cliente`],
   };
@@ -37,6 +37,7 @@ export async function middleware(req: NextRequest) {
   if (tokenMaster?.value) {
     try {
       const user: CredenciasRetorno = await VereficSession.isTokenVerefic(tokenMaster.value);
+
       if (gestorAcesso(user.role, req.nextUrl.pathname)) {
         return NextResponse.next();
       } else {
@@ -54,6 +55,6 @@ export const config = {
   matcher: [
     "/cliente/:path*",
     "/colaborador/:path*",
-    "/diretoria/:path*"
+    "/diretor/:path*"
   ]
 };

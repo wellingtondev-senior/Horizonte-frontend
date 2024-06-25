@@ -37,8 +37,14 @@ export function NewDocumentoDialog() {
     const { getRootProps, getInputProps } = useDropzone({
         onDrop,
         accept: {
-            'image/*': ['.jpeg', '.png'],
-            "application/*": [".pdf", ".doc", ".docx", ".xls", ".csv", ".txt"],
+            'image/jpeg': [],
+            'image/png': [],
+            'application/pdf': [],
+            'application/msword': [],
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document': [],
+            'application/vnd.ms-excel': [],
+            'text/csv': [],
+            'text/plain': []
         },
         multiple: true 
     });

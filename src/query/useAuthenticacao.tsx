@@ -70,7 +70,7 @@ export const useAuthenticacao = () => {
           </div>
         </div>
       );
-      router.replace(redirectPath);
+      location.href = redirectPath;
      
     },
     onError: async (err) => {

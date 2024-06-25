@@ -77,6 +77,11 @@ export const useDocumentosFindAll = () => {
     return useQuery({
         queryKey: ['queryDocumentoFindAll'],
         queryFn: documentosFindAll,
+        staleTime: 600000,
+        retry:false,
+        refetchOnWindowFocus:false,
+        refetchIntervalInBackground:false,
+        refetchInterval:false
     });
 };
 
