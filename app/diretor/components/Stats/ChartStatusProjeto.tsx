@@ -11,7 +11,7 @@ const data = [
 ];
 
 const size = {
-  width: 400,
+  width: 350,
   height: 300,
 };
 
@@ -19,7 +19,9 @@ const StyledText = styled('text')(({ theme }) => ({
   fill: theme.palette.text.primary,
   textAnchor: 'middle',
   dominantBaseline: 'central',
-  fontSize: 20,
+  fontSize: 15,
+  fontWeight: "bold"
+
 }));
 
 interface PieCenterLabelProps {
@@ -37,17 +39,33 @@ function PieCenterLabel({ children }: PieCenterLabelProps) {
 
 export default function PieChartWithCenterLabel() {
   return (
-    <div className="flex flex-col items-start h-[300px]">
-      <PieChart series={[{ data, innerRadius: 70 }]} {...size} 
-       margin={{ top: 50, bottom: 50, left: 50, right:50 }}
-      slotProps={{
-        legend: {
-          direction: 'row',
-          position: { vertical: 'bottom', horizontal: 'middle' },
-          padding: 0,
-        },
-      }}>
-        <PieCenterLabel>Status Projetos</PieCenterLabel>
+    <div className="flex flex-col items-start h-[300px] w-[350px]">
+      <PieChart
+        width={350}
+        height={300}
+        series={[{
+          data,
+          innerRadius: 90,
+          paddingAngle: 5,
+          outerRadius: 70,
+        }]}
+
+        margin={{
+          top: 10,
+          bottom: 10,
+          left: 10,
+          right: 10
+        }}
+        slotProps={{
+          legend: {
+            direction: 'row',
+            position: { vertical: 'bottom', horizontal: 'middle' },
+            padding: 0,
+          },
+        }}>
+        <PieCenterLabel>
+          Status Projetos
+        </PieCenterLabel>
       </PieChart>
     </div>
   );
