@@ -4,15 +4,11 @@ import { useEffect, useState } from "react"
 
 interface ProgressBarProps {
 progress:number
+colorIndicator:string
 }
 
-export function ProgressBar({progress}:ProgressBarProps) {
-  const [isProgress, setIsProgress] = useState(5)
+export function ProgressBar({progress, colorIndicator}:ProgressBarProps) {
+  
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsProgress(6), 500)
-    return () => clearTimeout(timer)
-  }, [])
-
-  return <Progress value={progress} className="w-[100%]" />
+  return <Progress value={progress} className="w-[100%] h-[10px]" colorIndictor={colorIndicator} />
 }

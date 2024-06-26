@@ -50,15 +50,15 @@ export function TableDocumentos({ filter, response }: TableDocumentosProps) {
 
     const deleteSelected = () => {
 
-        documentosDelete.mutate({ nomeDocumento:isCheckSelectedNome, ids:isCheckSelected})
+        documentosDelete.mutate({ nomeDocumento: isCheckSelectedNome, ids: isCheckSelected })
     }
 
 
 
-    const handlerCheck = (checked: string | boolean, id: number, nome:string) => {
+    const handlerCheck = (checked: string | boolean, id: number, nome: string) => {
         if (checked) {
             setIsCheckSelected((checkSelected) => [...checkSelected, id])
-            setIsCheckSelectedNome((nomeSelected)=>[...nomeSelected, nome])
+            setIsCheckSelectedNome((nomeSelected) => [...nomeSelected, nome])
         } else {
             setIsCheckSelected((checkSelected) =>
                 checkSelected.filter((checkId) => checkId !== id)
