@@ -62,7 +62,7 @@ export function TableProjeto() {
         <span className="font-bold text-[14px] text-gray-800">Projetos Por Área</span>
         <span className="font-bold text-[14px] text-gray-800">Total de Projetos</span>
       </div>
-      <div className="h-[300px] flex items-start justify-between gap-4 mb-4 overflow-y-auto">
+      <div className="h-[300px] flex flex-col items-start gap-4 mb-4 overflow-y-auto">
         <div className="w-full h-[40px] flex items-end justify-between gap-4 ">
           <div className="w-full  flex flex-col justify-end gap-2">
             <span className="font-bold text-[14px] h-[14px] text-gray-600">Licenciamento Ambiental</span>
@@ -70,29 +70,22 @@ export function TableProjeto() {
           </div>
           <span className="w-100px font-bold text-[12px] text-gray-600 ">19</span>
         </div>
+        <div className="w-full h-[40px] flex items-end justify-between gap-4 ">
+          <div className="w-full  flex flex-col justify-end gap-2">
+            <span className="font-bold text-[14px] h-[14px] text-gray-600">Licenciamento Ambiental</span>
+            <ProgressBar progress={50} colorIndicator="#02B2AF" />
+          </div>
+          <span className="w-100px font-bold text-[12px] text-gray-600 ">19</span>
+        </div>
+        <div className="w-full h-[40px] flex items-end justify-between gap-4 ">
+          <div className="w-full  flex flex-col justify-end gap-2">
+            <span className="font-bold text-[14px] h-[14px] text-gray-600">Licenciamento Ambiental</span>
+            <ProgressBar progress={50} colorIndicator="#02B2AF" />
+          </div>
+          <span className="w-100px font-bold text-[12px] text-gray-600 ">19</span>
+        </div>
+        
       </div>
     </div>
-    // <Table className="">
-    //   <TableHeader className="fixed">
-    //     <TableRow>
-    //       <TableHead className="">Projetos Por Área</TableHead>
-    //       <TableHead className="w-[100px] text-right">Quantidade</TableHead>
-    //     </TableRow>
-    //   </TableHeader>
-    //   <TableBody className="pt-[100px]">
-
-
-    //     <TableRow>
-    //       <TableCell className="">
-    //         <div className="w-full h-[40px] flex flex-col gap-2">
-    //           <span className="font-bold text-[14px] h-[14px] ">Licenciamento Ambiental</span>
-    //           <ProgressBar progress={50} />
-    //         </div>
-    //       </TableCell>
-    //       <TableCell className="text-right">19</TableCell>
-    //     </TableRow>
-    //   </TableBody>
-
-    // </Table>
   )
 }
