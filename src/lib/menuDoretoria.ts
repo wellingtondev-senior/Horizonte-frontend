@@ -1,6 +1,7 @@
 import { IconType } from 'react-icons/lib';
 import { VscGraph } from 'react-icons/vsc';
 import { GrStorage } from "react-icons/gr";
+import { TbSquareAsteriskFilled } from "react-icons/tb";
 export type menuDiretoriaType = {
     item: string,
     data: SubMenu[]
@@ -24,6 +25,11 @@ export const menuDiretoria = (item:string)=>{
             page: "/diretor/projetos",
             icon:VscGraph
         },   
+        {
+            label: "Áreas do Projeto",
+            page: "/diretor/area-projetos",
+            icon:TbSquareAsteriskFilled
+        }, 
         
  
     ]
