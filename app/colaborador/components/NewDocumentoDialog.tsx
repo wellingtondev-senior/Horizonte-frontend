@@ -113,7 +113,7 @@ export function NewDocumentoDialog() {
                                 <span className="text-[12px]">{`${(totalSize / 1000).toFixed(2)} KB`}</span>
                             </div>
                         </>
-                    )}
+                    )}  
                 </div>
                 <div className='w-full flex items-center justify-between  gap-2'>
                 <ProgressBar progress={uploadProgressStore.progress} colorIndicator={'#333'}/>
