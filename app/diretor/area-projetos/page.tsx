@@ -1,5 +1,5 @@
 import Dashboard from "../components/layout/Dashboard";
-import { NewProvedor } from "../components/NewProvedor";
+import { NewArea } from "../components/NewArea";
 import { TableProvedor } from "../components/TableProvedores";
 
 const ProjetosPage = () => {
@@ -12,7 +12,7 @@ const ProjetosPage = () => {
                         <span className="text-[18px] text-gray-700 font-bold ">Lista de todas áreas dos Projetos</span>
                     </div>
                     <div>
-                      < NewProvedor/>
+                      < NewArea/>
                     </div>
                 </div>
                 <div className="w-full">

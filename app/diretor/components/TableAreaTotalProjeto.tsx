@@ -55,7 +55,8 @@ const invoices = [
   },
 ]
 
-export function TableProjeto() {
+
+export function TableAreaTotalProjeto() {
   return (
     <div className="w-full p-4">
       <div className="flex items-center justify-between gap-4 mb-4 h-[50px] bg-gray-100 px-4 rounded-full">
