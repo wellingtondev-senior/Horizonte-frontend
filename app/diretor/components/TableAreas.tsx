@@ -8,7 +8,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button";
-import { useQueryAreasFindAll } from "@/query/useQueryAreas";
+import { useQueryAreasFindAll, useQueryAreasRemove } from "@/query/useQueryAreas";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegEye } from "react-icons/fa";
 import Spinner from "@/components/Spinner";
@@ -20,6 +20,11 @@ import Spinner from "@/components/Spinner";
 
 export function TableAreas() {
     const queryAreasFindAll = useQueryAreasFindAll();
+    const queryAreasRemove = useQueryAreasRemove()
+
+    const removeArea = (id: number) => {
+        queryAreasRemove.mutate({ id })
+    }
 
     return (
         <Table>
@@ -43,7 +48,7 @@ export function TableAreas() {
                                 <TableRow key={e.id} className="h-[40px] py-2">
                                     <TableCell className="font-medium ">{e.nome}</TableCell>
                                     <TableCell className="w-[100px] flex items-center justify-end gap-2">
-                                        <Button variant="ghost" className="p-0 hover:bg-transparent hover:text-red-600">
+                                        <Button onClick={ ()=>removeArea(e.id)} variant="ghost" className="p-0 hover:bg-transparent hover:text-red-600">
                                             <AiOutlineDelete className="w-6 h-6" />
                                         </Button>
                                         <Button variant="ghost" className="p-0 hover:bg-transparent hover:text-orange-400">

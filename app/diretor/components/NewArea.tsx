@@ -22,6 +22,7 @@ import { ProvedorEnum } from "@/enums/provedor.enum"
 import { tv } from "tailwind-variants"
 import { cn } from "@/lib/utils"
 import { ProvedorRequetType } from "@/types/provedor"
+import { useQueryAreasCreate } from "@/query/useQueryAreas"
 
 
 
@@ -45,22 +46,16 @@ const provedorSelected = tv({
 export function NewArea({ }) {
 
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-    const queryProvedorCreate = useQueryProvedorCreate();
-    const [isProvedor, setIsProvedor] = useState<ProvedorRequetType>({
-        provedor: ProvedorEnum.FIREBASE,
-        nome: "Firebase",
-        userId: 1,
-        limiteArmazenamento: "5GB"
-    })
+    const queryAreasCreate = useQueryAreasCreate();
+
 
     const controlDrawer = () => {
         setIsDrawerOpen(true)
     }
-
+ 
     const handleCreate = () => {
         setIsDrawerOpen(false)
-        queryProvedorCreate.mutate(isProvedor)
-        
+        queryAreasCreate.mutate({nome:"Area teste"})
     }
 
     return (
@@ -74,58 +69,13 @@ export function NewArea({ }) {
             <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">
                     <DrawerHeader>
-                        <DrawerTitle>Novo Provedor Storage</DrawerTitle>
-                        <DrawerDescription>Selecione o provedor de armazenamento.</DrawerDescription>
+                        <DrawerTitle>Nova área do projeto</DrawerTitle>
                     </DrawerHeader>
                     <div className="p-4 pb-0">
                         <div className="p-0 pb-0 mb-4">
-                            <span className="font-bold text-[14px]">Nome do Provedor:</span>
+                            <span className="font-bold text-[14px]">Nome da nova área:</span>
                             <Input type="text" />
                         </div>
-                        <span className="font-bold text-[14px]">Selecione o Provedor:</span>
-                        <div className="flex items-center justify-center space-x-2">
-
-                            <Button
-                                onClick={() =>
-                                    setIsProvedor({
-                                        provedor: ProvedorEnum.GDRIVER,
-                                        nome: "Google Driver",
-                                        userId: 1,
-                                        limiteArmazenamento: "5GB"
-                                    })}
-                                variant="outline"
-                                className={cn(provedorSelected({ selected: isProvedor.provedor == ProvedorEnum.GDRIVER }))}>
-                                <FaGoogleDrive />
-                                <span>GDriver</span>
-                            </Button>
-                            <Button
-                                onClick={() =>
-                                    setIsProvedor({
-                                        provedor: ProvedorEnum.DROPBOX,
-                                        nome: "Dropbox",
-                                        userId: 1,
-                                        limiteArmazenamento: "10GB"
-                                    })}
-                                variant="outline"
-                                className={cn(provedorSelected({ selected: isProvedor.provedor == ProvedorEnum.DROPBOX }))}>
-                                <FaDropbox />
-                                <span>Dropbox</span>
-                            </Button>
-                            <Button
-                                onClick={() => setIsProvedor({
-                                    provedor: ProvedorEnum.FIREBASE,
-                                    nome: "Firebase",
-                                    userId: 1,
-                                    limiteArmazenamento: "5GB"
-                                })}
-                                variant="outline"
-                                className={cn(provedorSelected({ selected: isProvedor.provedor == ProvedorEnum.FIREBASE }))}>
-                                <IoLogoFirebase />
-                                <span>Firebase</span>
-                            </Button>
-
-                        </div>
-
                     </div>
                     <DrawerFooter>
                         <Button onClick={handleCreate}>Enviar</Button>
