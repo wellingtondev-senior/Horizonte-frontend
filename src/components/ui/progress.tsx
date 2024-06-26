@@ -2,12 +2,17 @@
 
 import * as React from "react"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
-
 import { cn } from "@/lib/utils"
+
+// Define the props type including colorIndictor
+interface ProgressProps extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
+  colorIndictor?: string;
+  value?: number;
+}
 
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
+  ProgressProps
 >(({ colorIndictor, className, value, ...props }, ref) => (
   <ProgressPrimitive.Root
     ref={ref}
@@ -19,10 +24,14 @@ const Progress = React.forwardRef<
   >
     <ProgressPrimitive.Indicator
       className="h-full w-full flex-1 bg-primary transition-all"
-      style={{ backgroundColor:colorIndictor,transform: `translateX(-${100 - (value || 0)}%)` }}
+      style={{ 
+        backgroundColor: colorIndictor, 
+        transform: `translateX(-${100 - (value || 0)}%)` 
+      }}
     />
   </ProgressPrimitive.Root>
 ))
+
 Progress.displayName = ProgressPrimitive.Root.displayName
 
 export { Progress }
