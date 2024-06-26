@@ -39,10 +39,11 @@ function PieCenterLabel({ children }: PieCenterLabelProps) {
 
 export default function PieChartWithCenterLabel() {
   return (
-    <div className="flex flex-col items-start h-[300px] w-[350px]">
+    <div className="flex flex-col items-start h-[300px] w-[350px] max-lg:w-full">
       <PieChart
-        width={350}
-        height={300}
+      className='w-[350px]'
+      width={300}
+        height={350}
         series={[{
           data,
           innerRadius: 90,

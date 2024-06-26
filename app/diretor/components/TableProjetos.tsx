@@ -57,7 +57,7 @@ const invoices = [
 
 export function TableProjeto() {
   return (
-    <div className="p-4">
+    <div className="w-full p-4">
       <div className="flex items-center justify-between gap-4 mb-4 h-[50px] bg-gray-100 px-4 rounded-full">
         <span className="font-bold text-[14px] text-gray-800">Projetos Por Área</span>
         <span className="font-bold text-[14px] text-gray-800">Total de Projetos</span>
