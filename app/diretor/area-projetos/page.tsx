@@ -1,6 +1,6 @@
 import Dashboard from "../components/layout/Dashboard";
 import { NewArea } from "../components/NewArea";
-import { TableProvedor } from "../components/TableProvedores";
+import { TableAreas } from "../components/TableAreas";
 
 const ProjetosPage = () => {
     return (
@@ -16,7 +16,7 @@ const ProjetosPage = () => {
                     </div>
                 </div>
                 <div className="w-full">
-                    <TableProvedor/>
+                    <TableAreas/>
                 </div>
             </article>
         </Dashboard>

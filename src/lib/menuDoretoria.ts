@@ -38,8 +38,8 @@ export const menuDiretoria = (item:string)=>{
     item: "configurações",
     data: [
         {
-            label: "Provedores Storage",
-            page: "/diretor/storage",
+            label: "Provedores de Upload",
+            page: "/diretor/provedor",
             icon:GrStorage
         },   
  

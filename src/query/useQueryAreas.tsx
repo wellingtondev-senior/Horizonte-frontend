@@ -1,0 +1,66 @@
+"use client"
+import api from "@/services/api";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner"
+import ToastComponent from "@/components/Toast";
+import { Provedor, ProvedorRequetType, ProvedorResponseType } from "@/types/provedor";
+
+
+
+async function create({ nome}: ProvedorRequetType) {
+  const { data } = await api.post<ProvedorResponseType>("/areas/create", {nome});
+  return data
+}
+
+async function update(provedores:Provedor[]) {
+  const { data } = await api.patch<ProvedorResponseType>("/provedores", provedores);
+  return data
+}
+async function findAll() {
+    const { data } = await api.get<ProvedorResponseType>("/areas/all");
+    return data
+  }
+
+
+  export const useQueryAreasFindAll = () => {
+    return useQuery({
+      queryKey: ['queryProvedorFindAll'],
+      queryFn: findAll,
+      refetchOnWindowFocus:false,
+      staleTime:10 * 60 * 1000,
+      refetchInterval:10 * 60 * 1000,
+      gcTime: 10 * 60 * 1000,
+      
+    });
+  };
+
+export const useQueryAreasCreate = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: create,
+    onSuccess: async (data: ProvedorResponseType) => {
+      toast(<ToastComponent error={false} title="Nova Area do projeto" description="Cadastro com sucesso"/>)
+      await queryClient.invalidateQueries({
+        queryKey: ['queryAreasFindAll']
+    });
+    },
+    onError: async (err) => {
+      return toast(<ToastComponent error={true} title="Erro no Cadastro" description="Erro ao criar novo Provedor"/>)
+    }
+  });
+}
+
+export const useQueryProvedorUpdate = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+  return useMutation({
+    mutationFn: update,
+    onSuccess: async (data: ProvedorResponseType) => {
+      toast(<ToastComponent error={false} title="Provedor Atualizado" description="Atualização efetuada"/>)
+    },
+    onError: async (err) => {
+      return toast(<ToastComponent error={true} title="Provedor Error" description="Error ao atualizar"/>)
+    }
+  });
+}

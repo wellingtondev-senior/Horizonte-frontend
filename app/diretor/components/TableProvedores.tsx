@@ -12,6 +12,7 @@ import { useQueryProvedorCreate, useQueryProvedorFindAll } from "@/query/useQuer
 import { useEffect } from "react";
 import { QueryCache } from "@tanstack/react-query";
 import useProvider from "@/hook/useProvider";
+import Spinner from "@/components/Spinner";
 
 
 const invoices = [
@@ -24,8 +25,8 @@ const invoices = [
 ]
 
 export function TableProvedor() {
-    
-   
+
+
     const provedor = useProvider()
 
 
@@ -46,27 +47,27 @@ export function TableProvedor() {
             </TableHeader>
             <TableBody>
                 {
-                    provedor.isData.length === 0?
-                    <TableRow >
-                    <TableCell rowSpan={5} className="font-medium h-[40px]">Sem valor</TableCell>
-                  
-                 
-                </TableRow> :
-                provedor.isData?.map((provedorElemento, i)=>(
-                    <TableRow key={provedorElemento.provedor} className="h-[40px] py-2">
-                        <TableCell className="font-medium ">{provedorElemento.nome}</TableCell>
-                        <TableCell className="">{provedorElemento.provedor}</TableCell>
-                        <TableCell className="">{provedorElemento.limiteArmazenamento}</TableCell>
-                        <TableCell className="">0.0</TableCell>
-                        <TableCell className="text-right ">
-                            <Switch id={`provedor-${provedorElemento}`} checked={provedorElemento.status} onCheckedChange={(checked:boolean)=>provedor.setNewObject(i, checked)} />
-                        </TableCell>
-                    </TableRow>
-                ))
+                    provedor.isLoading ?
+                        <TableRow className="h-[40px] py-2">
+                            <TableCell colSpan={5} className="w-full h-[40px] text-center">
+                                <Spinner />
+                            </TableCell>
+                        </TableRow> :
+                        provedor.isData?.map((provedorElemento, i) => (
+                            <TableRow key={provedorElemento.provedor} className="h-[40px] py-2">
+                                <TableCell className="font-medium ">{provedorElemento.nome}</TableCell>
+                                <TableCell className="">{provedorElemento.provedor}</TableCell>
+                                <TableCell className="">{provedorElemento.limiteArmazenamento}</TableCell>
+                                <TableCell className="">0.0</TableCell>
+                                <TableCell className="text-right ">
+                                    <Switch id={`provedor-${provedorElemento}`} checked={provedorElemento.status} onCheckedChange={(checked: boolean) => provedor.setNewObject(i, checked)} />
+                                </TableCell>
+                            </TableRow>
+                        ))
                 }
-                
+
             </TableBody>
-            
+
         </Table>
     )
 }
