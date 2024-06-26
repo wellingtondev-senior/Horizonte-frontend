@@ -116,7 +116,7 @@ export function NewDocumentoDialog() {
                     )}
                 </div>
                 <div className='w-full flex items-center justify-between  gap-2'>
-                <ProgressBar progress={uploadProgressStore.progress}/>
+                <ProgressBar progress={uploadProgressStore.progress} colorIndicator={'#333'}/>
                 <span className='text-[12px] font-bold'>{uploadProgressStore.progress}%</span>
                 </div>
                 <DialogFooter>
