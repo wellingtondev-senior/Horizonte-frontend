@@ -10,7 +10,7 @@ const HomeDiretor = () => {
             <h2 className="text-3xl font-bold tracking-tight">Resumo Geral</h2>
             <article className="w-full flex  max-lg:flex-col items-start justify-between gap-4">
             <StateStatusProjeto />
-            <Card className="w-full h-[355px] overflow-y-auto">
+            <Card className="w-full max-h-[355px]">
                 <TableProjeto />
             </Card>
             </article>
