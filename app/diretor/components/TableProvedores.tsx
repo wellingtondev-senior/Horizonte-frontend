@@ -23,10 +23,11 @@ export function TableProvedor() {
             <TableHeader>
                 <TableRow>
                     <TableHead className="">Nome do Provedor</TableHead>
-                    <TableHead>Provedor</TableHead>
-                    <TableHead>Limite de Uso</TableHead>
-                    <TableHead>Tamanho em Uso</TableHead>
-                    <TableHead className="text-right">Ativar</TableHead>
+                    <TableHead className="text-center">Provedor</TableHead>
+                    <TableHead className="text-center">Limite de Uso</TableHead>
+                    <TableHead className="text-center">Tamanho em Uso</TableHead>
+                    <TableHead className="w-[100px]">Status</TableHead>
+                    <TableHead className="text-right w-[100px]">Ações</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -40,10 +41,10 @@ export function TableProvedor() {
                         provedor.isData?.map((provedorElemento, i) => (
                             <TableRow key={provedorElemento.provedor} className="h-[40px] py-2">
                                 <TableCell className="font-medium ">{provedorElemento.nome}</TableCell>
-                                <TableCell className="">{provedorElemento.provedor}</TableCell>
-                                <TableCell className="">{provedorElemento.limiteArmazenamento}</TableCell>
-                                <TableCell className="">0.0</TableCell>
-                                <TableCell className="text-right ">
+                                <TableCell className="text-center">{provedorElemento.provedor}</TableCell>
+                                <TableCell className="text-center">{provedorElemento.limiteArmazenamento}</TableCell>
+                                <TableCell className="text-center">0.0</TableCell>
+                                <TableCell className="w-[100px]">
                                     <Switch id={`provedor-${provedorElemento}`} checked={provedorElemento.status} onCheckedChange={(checked: boolean) => provedor.setNewObject(i, checked)} />
                                 </TableCell>
                                 <TableCell className="w-[100px] flex items-center justify-end gap-2">
