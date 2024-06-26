@@ -8,32 +8,16 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Switch } from "@/components/ui/switch"
-import { useQueryProvedorCreate, useQueryProvedorFindAll } from "@/query/useQueryProvedor";
-import { useEffect } from "react";
-import { QueryCache } from "@tanstack/react-query";
 import useProvider from "@/hook/useProvider";
 import Spinner from "@/components/Spinner";
+import { Button } from "@/components/ui/button";
+import { AiOutlineDelete } from "react-icons/ai";
+import { FaRegEye } from "react-icons/fa";
 
 
-const invoices = [
-    {
-        invoice: "INV001",
-        paymentStatus: "Paid",
-        totalAmount: "$250.00",
-        paymentMethod: "Credit Card",
-    },
-]
 
 export function TableProvedor() {
-
-
     const provedor = useProvider()
-
-
-
-
-
-
     return (
         <Table>
             <TableHeader>
@@ -62,6 +46,14 @@ export function TableProvedor() {
                                 <TableCell className="text-right ">
                                     <Switch id={`provedor-${provedorElemento}`} checked={provedorElemento.status} onCheckedChange={(checked: boolean) => provedor.setNewObject(i, checked)} />
                                 </TableCell>
+                                <TableCell className="w-[100px] flex items-center justify-end gap-2">
+                                        <Button variant="ghost" className="p-0 hover:bg-transparent hover:text-red-600">
+                                            <AiOutlineDelete className="w-6 h-6" />
+                                        </Button>
+                                        <Button variant="ghost" className="p-0 hover:bg-transparent hover:text-orange-400">
+                                            <FaRegEye className="w-6 h-6" />
+                                        </Button>
+                                    </TableCell>
                             </TableRow>
                         ))
                 }
