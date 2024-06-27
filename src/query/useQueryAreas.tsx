@@ -4,7 +4,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner"
 import ToastComponent from "@/components/Toast";
-import { Provedor, ProvedorRequetType, ProvedorResponseType } from "@/types/provedor";
 import { AreaResponse } from "@/types/areas";
 
 
@@ -19,7 +18,7 @@ async function update() {
   return data
 }
 async function remove({id}:{id:number}) {
-  const { data } = await api.delete("");
+  const { data } = await api.delete(`/areas/${id}`);
   return data
 }
 
@@ -77,7 +76,7 @@ export const useQueryProvedorUpdate = () => {
   const router = useRouter();
   return useMutation({
     mutationFn: update,
-    onSuccess: async (data: ProvedorResponseType) => {
+    onSuccess: async (data: any) => {
       toast(<ToastComponent error={false} title="Provedor Atualizado" description="Atualização efetuada"/>)
     },
     onError: async (err) => {
