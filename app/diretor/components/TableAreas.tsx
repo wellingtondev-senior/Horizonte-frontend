@@ -31,7 +31,6 @@ export function TableAreas() {
             <TableHeader>
                 <TableRow>
                     <TableHead className="">Áreas de Projetos</TableHead>
-
                     <TableHead className="text-right w-[100px]">Ações</TableHead>
                 </TableRow>
             </TableHeader>
