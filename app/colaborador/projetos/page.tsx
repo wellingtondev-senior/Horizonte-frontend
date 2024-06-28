@@ -3,6 +3,7 @@ import Dashboard from "../components/layout/Dashboard";
 import { EstadoProjeto } from "@/enums/satusProjeto.enum";
 import PieChart from "../components/PieChart";
 import CardProjeto from "../components/CardProjeto";
+import ChartStatusProjeto from "@/components/ChartStatusProjeto";
 
 
 
@@ -69,10 +70,14 @@ const StatusPage = () => {
                         <span className="font-bold text-[16px] text-gray-700">Demonstrativo gráfico do status do projeto</span>
                         <span className="text-[14px] text-gray-400">Um resumo visual do progresso e estado atual de um projeto.</span>
                         <div className="mt-10">
-                            <PieChart dataPie={[4, 25, 34]} />
+                           <ChartStatusProjeto/>
                         </div>
                     </div>
                     <div className="w-[70%] max-md:w-full border max-h-screen h-auto overflow-y-auto border-gray-200 shadow-sm rounded-lg p-2 flex flex-col gap-4">
+                        <CardProjeto/>
+                        <CardProjeto/>
+                        <CardProjeto/>
+                        <CardProjeto/>
                         <CardProjeto/>
                         <CardProjeto/>
                         <CardProjeto/>

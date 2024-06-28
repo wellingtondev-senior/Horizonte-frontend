@@ -1,5 +1,5 @@
+import ChartStatusProjeto from "@/components/ChartStatusProjeto";
 import { Card } from "@/components/ui/card";
-import ChartStatusProjeto from "./ChartStatusProjeto";
 
 const StateStatusProjeto = () => {
     return (

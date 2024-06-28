@@ -10,10 +10,7 @@ const data = [
   { value: 15, label: 'Concluido' },
 ];
 
-const size = {
-  width: 350,
-  height: 300,
-};
+
 
 const StyledText = styled('text')(({ theme }) => ({
   fill: theme.palette.text.primary,
@@ -37,7 +34,7 @@ function PieCenterLabel({ children }: PieCenterLabelProps) {
   );
 }
 
-export default function PieChartWithCenterLabel() {
+export default function ChartStatusProjeto() {
   return (
     <div className="flex flex-col items-start h-[300px] w-[350px] max-lg:w-full">
       <PieChart
